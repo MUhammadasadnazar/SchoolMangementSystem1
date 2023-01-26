@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddNew.CreateNewStaff">
+
+    <LinearLayout
+        android:paddingHorizontal="30dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/_edtstaffname"
+            android:hint="Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></EditText>
+        <EditText
+            android:id="@+id/_edtAddress"
+            android:hint="Address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></EditText>
+        <EditText
+            android:id="@+id/_edteducation"
+            android:hint="Education"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></EditText>
+
+        <EditText
+            android:id="@+id/_edtcontactNo"
+            android:hint="Contact No"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></EditText>
+        <EditText
+            android:id="@+id/_edtemailaddress"
+            android:hint="Email Address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></EditText>
+        <EditText
+            android:id="@+id/_edtpass"
+            android:hint="password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></EditText>
+
+        <Button
+            android:onClick="CreateNEwStaff"
+            android:layout_margin="30dp"
+            android:text="Create Staff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Button>
+
+    </LinearLayout>
+
+
+</LinearLayout>

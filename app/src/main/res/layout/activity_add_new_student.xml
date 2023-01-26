@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+        android:background="@color/mainbgcolor"
+    tools:context=".AddNew.AddNewStudent">
+    <ImageView
+            android:layout_marginTop="20dp"
+            android:src="@drawable/mainlogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ImageView>
+    <LinearLayout
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <EditText
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:id="@+id/_stdfname"
+                android:hint="First Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+        <EditText
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:id="@+id/_stdlname"
+                android:hint="Last Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+        <EditText
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:id="@+id/_stdRollNo"
+                android:hint="Roll No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+        <EditText
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:id="@+id/_stdmobileNo"
+                android:hint="Mobile No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+        <EditText
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:id="@+id/_stdEmailAddress"
+                android:hint="Email Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+        <EditText
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:id="@+id/_stdHomeAddress"
+                android:hint="Home Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+        <EditText
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:id="@+id/_stdGaurdianName"
+                android:hint="Gaurdian Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+        <EditText
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:id="@+id/_stdGaurdianPhoneNo"
+                android:hint="Phone No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+
+        <Button
+                 android:textColor="@color/white"
+                 android:background="@drawable/edttextbg"
+                android:onClick="SaveNewStudent"
+                android:layout_marginHorizontal="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+
+
+
+</LinearLayout>

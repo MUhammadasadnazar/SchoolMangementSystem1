@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "555602636714",
+    "firebase_url": "https://fir-project-175aa-default-rtdb.firebaseio.com",
+    "project_id": "fir-project-175aa",
+    "storage_bucket": "fir-project-175aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555602636714:android:634c333f6acb0ece0405d3",
+        "android_client_info": {
+          "package_name": "com.example.firebaseproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555602636714-3ls43vni8if8u41faof733gv5plgip4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBHGjjP220fjZ8JnYGDfpYAAKAHwHjQ1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555602636714-3ls43vni8if8u41faof733gv5plgip4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:555602636714:android:a01f2bf0874849a20405d3",
+        "android_client_info": {
+          "package_name": "com.example.schoolmangementsystem1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "555602636714-3ls43vni8if8u41faof733gv5plgip4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBHGjjP220fjZ8JnYGDfpYAAKAHwHjQ1o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "555602636714-3ls43vni8if8u41faof733gv5plgip4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

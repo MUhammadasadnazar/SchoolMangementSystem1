@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+          android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.cardview.widget.CardView
+            app:cardCornerRadius="7dp"
+            android:layout_margin="10dp"
+             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:padding="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                    android:textStyle="bold"
+                    android:text="Name1"
+                    android:textSize="18dp"
+                    android:id="@+id/_tvstdname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+            <TextView
+
+                    android:text="1504353"
+                    android:textSize="16dp"
+                    android:id="@+id/_tvstdrollno"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

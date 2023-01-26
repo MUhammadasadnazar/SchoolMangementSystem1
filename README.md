@@ -1,0 +1,2 @@
+# SchoolMangementSystem1
+ SchoolMangementSystem1

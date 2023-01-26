@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/mainbgcolor"
+        tools:context=".AddNew.AddNewSubject">
+
+    <ImageView
+            android:layout_marginTop="20dp"
+            android:src="@drawable/mainlogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ImageView>
+
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            android:gravity="center"
+             android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <TextView
+                android:visibility="gone"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:textColor="@color/edttextbg"
+                android:layout_marginTop="10dp"
+                android:text="Select Class Instructure : "
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
+        <Spinner
+
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:layout_marginTop="10dp"
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
+
+        <EditText
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:layout_marginTop="10dp"
+                android:id="@+id/_edtsbjtitle"
+                android:hint="Subject title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+
+        <EditText
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:layout_marginTop="10dp"
+                android:inputType="number"
+                android:id="@+id/_edtsbjnolectures"
+                android:hint="No of Lectures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+
+        <FrameLayout
+
+                android:textColor="@color/white"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+                android:background="@drawable/edttextbg"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+            <EditText
+                    android:background="@android:color/transparent"
+                    android:id="@+id/_sbjcoutline"
+                    android:hint="Main Theme Or Objective Of the Course"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textMultiLine"
+                    android:gravity="start|top"
+                    android:ems="10"
+                    />
+
+        </FrameLayout>
+
+
+
+        <Button
+                android:textColor="@color/white"
+                 android:background="@drawable/edttextbg"
+                android:layout_marginTop="10dp"
+                android:onClick="AddNewSubjectt"
+                android:text="Add New Subject"
+                android:layout_margin="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Button>
+
+
+    </LinearLayout>
+
+</LinearLayout>
