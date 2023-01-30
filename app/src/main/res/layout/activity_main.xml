@@ -159,6 +159,77 @@
         </LinearLayout>
 
     </LinearLayout>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                    android:onClick="goToLeaveRequest"                    android:layout_margin="20dp"
+                    android:layout_width="0dp"
+                android:layout_weight="1"
+                    android:outlineAmbientShadowColor="@color/boxbgcolor"
+                    app:cardCornerRadius="10dp"
+                     app:cardBackgroundColor="@color/boxbgcolor"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:layout_margin="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/leave"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"></ImageView>
+                    <TextView
+                            android:textSize="18dp"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:text="Leave Request"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"></TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                    android:onClick="GoToAttendance"
+                    android:layout_margin="20dp"
+                    android:layout_width="0dp"
+                android:layout_weight="1"
+                    app:cardCornerRadius="10dp"
+                    android:paddingVertical="10dp"
+                    app:cardBackgroundColor="@color/boxbgcolor"
+                    android:layout_height="wrap_content">
+                <LinearLayout
+                        android:layout_margin="10dp"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <ImageView
+                            android:layout_gravity="center"
+                            android:src="@drawable/attendance"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"></ImageView>
+                    <TextView
+                            android:textSize="18dp"
+                            android:textColor="@color/white"
+                            android:gravity="center"
+                            android:text="Attendance"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"></TextView>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <Button
         android:onClick="LogOut"
@@ -200,6 +271,7 @@
         android:layout_height="wrap_content"></Button>
 <!--    TimeTable Button-->
     <Button
+            android:visibility="gone"
         android:onClick="GoToTimeTable"
         android:layout_marginHorizontal="30dp"
         android:text="Time Table"

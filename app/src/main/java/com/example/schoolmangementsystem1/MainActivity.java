@@ -1,5 +1,7 @@
 package com.example.schoolmangementsystem1;
 
+import android.app.ActivityManager;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import androidx.annotation.NonNull;
@@ -14,9 +16,12 @@ import kotlin.text.UStringsKt;
 import com.example.schoolmangementsystem1.AddNew.AddNewClass;
 import com.example.schoolmangementsystem1.AddNew.CreateNewStaff;
 import com.example.schoolmangementsystem1.Attendance.MonthListActivity;
+import com.example.schoolmangementsystem1.LeaveRequest.StdRequestList;
 import com.example.schoolmangementsystem1.List.StudentsListActivity;
 import com.example.schoolmangementsystem1.List.SubjectListActivity;
 import com.example.schoolmangementsystem1.TimeTable.DaysListActivity;
+import com.example.schoolmangementsystem1.services.MyServiceAdmin;
+import com.example.schoolmangementsystem1.services.Restarter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-
+    String stdid = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,18 +69,47 @@ public class MainActivity extends AppCompatActivity {
 
             LoadClass();
 
+
+
         }
         else if(isstaff.equals("no")){
-
-           String stdid = sharedPreferences.getString("uid2" , "");
+            stdid = sharedPreferences.getString("uid2" , "");
            getStudentClassID(stdid);
 
 
         }
 
+        MyServiceAdmin mYourService = new MyServiceAdmin();
+        Intent strtservice = new Intent(MainActivity.this, mYourService.getClass());
+
+        if (!isMyServiceRunning(mYourService.getClass())) {
+            startService(strtservice);
+        }
 
 
+    }
 
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("restartservice");
+        broadcastIntent.setClass(this, Restarter.class);
+        this.sendBroadcast(broadcastIntent);
+        //  super.onDestroy();
+    }
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                Log.i ("Service status", "Running");
+                return true;
+            }
+        }
+        Log.i ("Service status", "Not running");
+        return false;
     }
 
     public void getStudentClassID(String stdid){
@@ -142,6 +176,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void LogOut(View view) {
         FirebaseAuth.getInstance().signOut();
+        sharedPreferences.edit().clear();
+        sharedPreferences.edit().apply();
 
         Intent intent = new Intent(MainActivity.this , LogInActivity.class);
         startActivity(intent);
@@ -168,5 +204,14 @@ public class MainActivity extends AppCompatActivity {
     public void GoToAttendance(View view) {
         Intent intent = new Intent(MainActivity.this , MonthListActivity.class);
         startActivity(intent);
+    }
+
+    public void goToLeaveRequest(View view) {
+
+       // if(isstaff.equals("no")){
+            Intent intent = new Intent(MainActivity.this , StdRequestList.class);
+            intent.putExtra("uid" , stdid);
+            startActivity(intent);
+      //  }
     }
 }

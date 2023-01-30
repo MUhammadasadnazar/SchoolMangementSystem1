@@ -1,6 +1,11 @@
 package com.example.schoolmangementsystem1;
 
+import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import androidx.annotation.NonNull;
@@ -15,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.schoolmangementsystem1.Interface.onCheckChanged;
+import com.example.schoolmangementsystem1.services.AutoRunReciever;
+import com.example.schoolmangementsystem1.services.MyServiceAdmin;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -55,8 +62,24 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
         edtuname = findViewById(R.id.edtuname);
         edtpass = findViewById(R.id.edtupassword);
 
+        MyServiceAdmin mYourService = new MyServiceAdmin();
+        Intent strtservice = new Intent(LogInActivity.this, mYourService.getClass());
 
-       // FirebaseApp.initializeApp(this);
+        if (!isMyServiceRunning(mYourService.getClass())) {
+            startService(strtservice);
+        }
+
+        BroadcastReceiver br = new AutoRunReciever();
+
+        IntentFilter filter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        filter.addAction(Intent.ACTION_BOOT_COMPLETED);
+        registerReceiver(br, filter);
+
+        //   Toast.makeText(LogInActivity.this, "hello", Toast.LENGTH_SHORT).show();
+
+
+
+        // FirebaseApp.initializeApp(this);
 
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser()!= null){
@@ -85,6 +108,7 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
                        // break;
                         ProceddToLogIn(true , user);
                         break;
+                     //   Toast.makeText(LogInActivity.this, "hello", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -194,5 +218,17 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
         }
 
 
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                Log.i ("Service status", "Running");
+                return true;
+            }
+        }
+        Log.i ("Service status", "Not running");
+        return false;
     }
 }
