@@ -23,33 +23,55 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <TextView
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                 android:textSize="18dp"
+                android:textColor="@color/offwhite"
+                android:text="Title For Class"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
         <EditText
                 android:layout_marginTop="8dp"
                 android:textColor="@color/white"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="14dp"
-                android:background="@drawable/edttextbg"
-            android:hint="Title"
+                android:background="@drawable/bordershape1"
+            android:hint=""
             android:id="@+id/_edtclasstitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
+
+        <TextView
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/offwhite"
+                android:text="No of Students"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
         <EditText
+                android:inputType="number"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/white"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="14dp"
-                android:background="@drawable/edttextbg"
-            android:hint="No Of Students"
+                android:background="@drawable/bordershape1"
+            android:hint=""
             android:id="@+id/_edtnostudents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
 
         <TextView
+                android:layout_marginLeft="5dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
-            android:textColor="@color/edttextbg"
-            android:layout_marginTop="10dp"
-            android:text="Select Class Incharge : "
+            android:textColor="@color/offwhite"
+            android:layout_marginTop="20dp"
+            android:text="Select Class Incharge "
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></TextView>
         <Spinner
@@ -57,7 +79,7 @@
                 android:textColor="@color/white"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="14dp"
-                android:background="@drawable/edttextbg"
+                android:background="@drawable/bordershape1"
             android:id="@+id/spinner1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></Spinner>

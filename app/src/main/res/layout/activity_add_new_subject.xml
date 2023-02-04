@@ -33,53 +33,81 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></TextView>
 
+        <TextView
+                android:layout_margin="10dp"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:text="Select Class Instructor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
         <Spinner
 
                 android:textColor="@color/white"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="14dp"
-                android:background="@drawable/edttextbg"
+                android:background="@drawable/bordershape1"
                 android:layout_marginTop="10dp"
                 android:id="@+id/spinner1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></Spinner>
+        <TextView
+                 android:layout_margin="10dp"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:text="Subject Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
 
         <EditText
                 android:textColor="@color/white"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="14dp"
-                android:background="@drawable/edttextbg"
+                android:background="@drawable/bordershape1"
                 android:layout_marginTop="10dp"
                 android:id="@+id/_edtsbjtitle"
-                android:hint="Subject title"
-                android:layout_width="match_parent"
+                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></EditText>
+
+        <TextView
+                android:layout_margin="10dp"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:text="No Of Lectures"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
 
         <EditText
                 android:textColor="@color/white"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="14dp"
-                android:background="@drawable/edttextbg"
+                android:background="@drawable/bordershape1"
                 android:layout_marginTop="10dp"
                 android:inputType="number"
                 android:id="@+id/_edtsbjnolectures"
-                android:hint="No of Lectures"
-                android:layout_width="match_parent"
+                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></EditText>
+
+        <TextView
+                android:layout_margin="10dp"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                android:text="Course Objectives / Outline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
 
         <FrameLayout
 
                 android:textColor="@color/white"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="14dp"
-                android:background="@drawable/edttextbg"
+                android:background="@drawable/bordershape1"
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="100dp">
             <EditText
                     android:background="@android:color/transparent"
                     android:id="@+id/_sbjcoutline"
-                    android:hint="Main Theme Or Objective Of the Course"
+                    android:hint=""
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textMultiLine"

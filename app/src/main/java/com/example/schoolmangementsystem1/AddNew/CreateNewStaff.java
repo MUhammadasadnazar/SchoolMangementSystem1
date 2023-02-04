@@ -50,13 +50,15 @@ public class CreateNewStaff extends AppCompatActivity {
 
     public  void CreateNEwStaff(View view){
 
-        if (edtpass.getText().toString().trim().equals("")){
-            Toast.makeText(this, "Make Sure You have Entered Password...", Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "ok:"+validtaion(), Toast.LENGTH_SHORT).show();
+       // if (edtpass.getText().toString().trim().equals("")){
+        if (!validtaion()){
+            Toast.makeText(this, "Make Sure You have Entered All Credentials...", Toast.LENGTH_SHORT).show();
         }else
         {
 
             firebaseAuth.createUserWithEmailAndPassword
-                            (edtemailaddress.getText().toString(),edtpass.getText().toString())
+                            (edtemailaddress.getText().toString(),"123456")
                     .addOnCompleteListener(new OnCompleteListener<AuthResult>()
                     {
                         @Override
@@ -64,6 +66,7 @@ public class CreateNewStaff extends AppCompatActivity {
                             if (task.isSuccessful()){
                                 Toast.makeText(CreateNewStaff.this, "User Created", Toast.LENGTH_SHORT).show();
 //                    userlist.add(new User(firebaseAuth.getCurrentUser().getUid(),edtname.getText().toString(),edtpass.getText().toString()));
+
 
                              Staff staff = new Staff();
                              staff.setStaffId(firebaseAuth.getCurrentUser().getUid()+"");
@@ -73,13 +76,16 @@ public class CreateNewStaff extends AppCompatActivity {
                              staff.setContactNo(edtcontactno.getText().toString()+"");
                              staff.setEmailAddress(edtemailaddress.getText().toString()+"");
                              staff.setAdmin(false);
-                             staff.setPassword(edtpass.getText().toString()+"");
+                             staff.setPassword("123456");
 
 
                                 databaseReference.child(firebaseAuth.getCurrentUser().getUid())
                                         .setValue(staff);
 
-                                startActivity(new Intent(CreateNewStaff.this, MainActivity.class));
+                                Toast.makeText(CreateNewStaff.this, "Operation Successfull...", Toast.LENGTH_SHORT).show();
+                                 Intent intent= new Intent(CreateNewStaff.this, MainActivity.class);
+                                finish();
+                                startActivity(intent);
                             }
                             else
                             if (!task.isSuccessful()){
@@ -91,5 +97,20 @@ public class CreateNewStaff extends AppCompatActivity {
 
         }
 
+    }
+
+    public boolean validtaion(){
+        boolean isok = true;
+
+        if (edtname.getText().toString().trim().equals("")||
+                edtaddress.getText().toString().trim().equals("")||
+        edtcontactno.getText().toString().trim().equals("")||
+        edteducation.getText().toString().trim().equals("")||
+                edtemailaddress.getText().toString().trim().equals("")){
+
+
+            isok = false;
+        }
+        return isok;
     }
 }

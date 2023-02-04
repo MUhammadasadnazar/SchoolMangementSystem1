@@ -34,7 +34,7 @@ public class TodaysAttendance extends AppCompatActivity {
 	String month = "";
 	String date = "";
 	String timestamp = "";
-	String day1 = "";
+	String day1  = "";String month1 = "";
 
 
 	@Override
@@ -52,6 +52,7 @@ public class TodaysAttendance extends AppCompatActivity {
 		if (!day112.equals("")){
 			String [] array123 = day112.split(" ");
 			day1 = array123[0];
+			month1 = array123[1];
 
 		}
 
@@ -61,8 +62,8 @@ public class TodaysAttendance extends AppCompatActivity {
 		String[] timestamplist = timestamp.split(" ");
 		month = timestamplist[1];
 		date = timestamplist[2];
-		Toast.makeText(this, "month : "+month, Toast.LENGTH_SHORT).show();
-		Toast.makeText(this, "date : "+date, Toast.LENGTH_SHORT).show();
+	//	Toast.makeText(this, "month : "+month, Toast.LENGTH_SHORT).show();
+	//	Toast.makeText(this, "date : "+date, Toast.LENGTH_SHORT).show();
 //		Toast.makeText(this, "time : "+timestamplist[0]+timestamplist[1], Toast.LENGTH_SHORT).show();
 //
 		String uid = "";
@@ -90,6 +91,7 @@ public class TodaysAttendance extends AppCompatActivity {
 			public void onClickRvItem(View view, int position) {
 				Intent intent1 = new Intent(TodaysAttendance.this , StdAttenReportActivity.class);
 				intent1.putExtra("stdid" , list.get(position).getStdUid()+"");
+				intent1.putExtra("moonth" , month1);
 				startActivity(intent1);
 			}
 		});
@@ -161,7 +163,7 @@ public class TodaysAttendance extends AppCompatActivity {
 	public void LoadStudentList2(){
 
 
-		databaseReferenceattendance.child(month).child(day1).addValueEventListener(new ValueEventListener() {
+		databaseReferenceattendance.child(month1).child(day1).addValueEventListener(new ValueEventListener() {
 
 			@Override
 			public void onDataChange(@NonNull DataSnapshot snapshot) {

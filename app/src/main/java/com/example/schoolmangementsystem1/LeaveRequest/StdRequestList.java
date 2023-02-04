@@ -85,6 +85,9 @@ public class StdRequestList extends AppCompatActivity {
 							req.setReqStatus(snapshot1.child("reqStatus").getValue(String.class));
 
 							req.setDate1(snapshot1.child("date1").getValue(String.class));
+							req.setDate2(snapshot1.child("date2").getValue(String.class));
+						req.setReqReason(snapshot1.child("reqReason").getValue(String.class));
+						req.setReqRemarks(snapshot1.child("reqRemarks").getValue(String.class));
 							list.add(req);
 					//	}
 
@@ -128,8 +131,12 @@ public class StdRequestList extends AppCompatActivity {
 							snapshot1.getKey();
 							req.setReqStatus(snapshot1.child("reqStatus").getValue(String.class));
 
-							req.setDate1(snapshot1.child("reqReason").getValue(String.class));
-							//req.setDate1(snapshot2.child("date1").getValue(String.class));
+							req.setDate1(snapshot1.child("date1").getValue(String.class));
+					        req.setDate2(snapshot1.child("date2").getValue(String.class));
+							req.setReqReason(snapshot1.child("reqReason").getValue(String.class));
+							req.setReqRemarks(snapshot1.child("reqRemarks").getValue(String.class));
+
+					//req.setDate1(snapshot2.child("date1").getValue(String.class));
 							list.add(req);
 					adapterLeaveRequestList.notifyDataSetChanged();
 

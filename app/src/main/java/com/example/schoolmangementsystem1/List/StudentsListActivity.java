@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,16 +35,25 @@ public class StudentsListActivity extends AppCompatActivity {
     DatabaseReference databasereference ;
     FirebaseUser firebaseUser;
     SharedPreferences sharedPreferences;
+    String isstaff = "";
+    CardView cardviewaddnewstdent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students_list);
+        cardviewaddnewstdent = findViewById(R.id._cardviewaddnewstdent);
         sharedPreferences = getSharedPreferences("my_pref" , MODE_PRIVATE);
        // firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         //String uid = firebaseUser.getUid();
         String uid = "";
         uid = sharedPreferences.getString("uid" , "");
+
+         isstaff = sharedPreferences.getString("isstaff" , "");
+
+         if (isstaff.equals("no")){
+             cardviewaddnewstdent.setVisibility(View.GONE);
+         }
 
         //String uid = "vHKiHvEXm9fFYVamj27NgQEodxR2";
        // String uid = "zhiRCFXtJHgKa5emMTbDpUdpNKg2";

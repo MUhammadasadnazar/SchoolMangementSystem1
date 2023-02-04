@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import com.example.schoolmangementsystem1.R;
@@ -131,6 +132,7 @@ public class MonthListActivity extends AppCompatActivity implements AdapterView.
 
 			Intent intent = new Intent(MonthListActivity.this , StdAttenReportActivity.class);
 			intent.putExtra("stdid" , stduid);
+			intent.putExtra("moonth" , MonthList.get(i).toString());
 			startActivity(intent);
 		}
 

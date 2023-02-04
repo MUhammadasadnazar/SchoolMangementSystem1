@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.LinearLayout;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -35,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     String isstaff = "";
     FirebaseStorage storageReference;
     Button btnCreateNewStaff , btnAddNewCLass;
+    LinearLayout linearlayoutstdentsubject;
 
     DatabaseReference databaseReference , databaseReferenceStaff ;
 
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnCreateNewStaff = findViewById(R.id._btnCreateNewStaff);
         btnAddNewCLass = findViewById(R.id._btnAddNewClass);
+        linearlayoutstdentsubject = ( LinearLayout) findViewById(R.id._linearlayoutstdentsubject);
 
         //uid as class id and uid2 as USer ID
 
@@ -145,13 +148,16 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Boolean isAdmin = snapshot.child("admin").getValue(Boolean.class);
                 if (isAdmin){
-                    btnAddNewCLass.setVisibility(View.VISIBLE);
-                    btnCreateNewStaff.setVisibility(View.VISIBLE);
+                    linearlayoutstdentsubject.setVisibility(View.VISIBLE);
+                   // btnAddNewCLass.setVisibility(View.VISIBLE);
+                   // btnCreateNewStaff.setVisibility(View.VISIBLE);
 
                 }
                 else {
-                    btnAddNewCLass.setVisibility(View.GONE);
-                    btnCreateNewStaff.setVisibility(View.GONE);
+                    linearlayoutstdentsubject.setVisibility(View.GONE);
+
+                    //  btnAddNewCLass.setVisibility(View.GONE);
+                    // btnCreateNewStaff.setVisibility(View.GONE);
                 }
             }
 
@@ -180,6 +186,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences.edit().apply();
 
         Intent intent = new Intent(MainActivity.this , LogInActivity.class);
+        finish();
         startActivity(intent);
     }
 
@@ -187,8 +194,17 @@ public class MainActivity extends AppCompatActivity {
        /* Intent intent = new Intent(MainActivity.this , StudentsListActivity.class);
         startActivity(intent);*/
 
-        Intent intent = new Intent(MainActivity.this , StudentsListActivity.class);
-        startActivity(intent);
+        if (isstaff.equals("yes")){
+
+            Intent intent = new Intent(MainActivity.this , StudentsListActivity.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(MainActivity.this , StudentProfileActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 
     public void GoToSubjectList(View view) {

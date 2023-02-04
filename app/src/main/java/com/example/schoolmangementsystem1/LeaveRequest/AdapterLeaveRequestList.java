@@ -32,8 +32,21 @@ public class AdapterLeaveRequestList  extends RecyclerView.Adapter<AdapterLeaveR
 	@Override
 	public void onBindViewHolder(@NonNull AdapterLeaveRequestList.ViewHolder holder, int position) {
 
-		holder.tv1.setText(list.get(position).getDate1()+"");
+
+		String[]  array = new String[2];
+		String[]  array2 = new String[2];
+		if (list.get(position).getDate2() != null){
+			array = list.get(position).getDate2().split(" ");
+
+		}
+		if (list.get(position).getDate1() != null){
+			array2 = list.get(position).getDate1().split(" ");
+
+		}
+		holder.tv1.setText(array2[0]+" / "+array[0]);
 		holder.tv2.setText(list.get(position).getReqStatus()+"");
+		holder.tv3.setText(list.get(position).getReqReason()+"");
+		holder.tv4.setText(list.get(position).getReqRemarks()+"");
 
 	}
 
@@ -43,7 +56,7 @@ public class AdapterLeaveRequestList  extends RecyclerView.Adapter<AdapterLeaveR
 	}
 
 	public class ViewHolder extends RecyclerView.ViewHolder {
-		TextView tv1 , tv2;
+		TextView tv1 , tv2 , tv3 , tv4;
 
 
 		public ViewHolder(@NonNull View itemView) {
@@ -51,6 +64,8 @@ public class AdapterLeaveRequestList  extends RecyclerView.Adapter<AdapterLeaveR
 
 			tv1 = itemView.findViewById(R.id.reqdate1);
 			tv2 = itemView.findViewById(R.id.reqremarks);
+			tv3 = itemView.findViewById(R.id.tv3);
+			tv4 = itemView.findViewById(R.id.tv4);
 		}
 	}
 }

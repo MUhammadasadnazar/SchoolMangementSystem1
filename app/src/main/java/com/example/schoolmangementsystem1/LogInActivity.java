@@ -1,6 +1,7 @@
 package com.example.schoolmangementsystem1;
 
 import android.app.ActivityManager;
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.IntentFilter;
@@ -23,6 +24,7 @@ import com.example.schoolmangementsystem1.Interface.onCheckChanged;
 import com.example.schoolmangementsystem1.services.AutoRunReciever;
 import com.example.schoolmangementsystem1.services.MyServiceAdmin;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -87,6 +89,7 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
             intent.putExtra("uid" , mAuth.getCurrentUser().getUid()+"");
            // editor.putString("uid" , mAuth.getCurrentUser().getUid()+"");
            // editor.commit();
+            finish();
             startActivity(intent);
         }
     }
@@ -137,8 +140,10 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
             editor.putString("uid2" , user.getUid()+"");
             editor.putString("isstaff" , "yes");
             editor.commit();
+            finish();
+
             startActivity(intent);
-            Toast.makeText(LogInActivity.this, "User"+user.getEmail() , Toast.LENGTH_SHORT).show();
+           // Toast.makeText(LogInActivity.this, "User"+user.getEmail() , Toast.LENGTH_SHORT).show();
 
 
         }
@@ -181,8 +186,10 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
                                     editor.putString("uid2" , user.getUid()+"");
                                     editor.putString("isstaff" , "no");
                                     editor.commit();
+                                    finish();
+
                                     startActivity(intent);
-                                    Toast.makeText(LogInActivity.this, "User"+user.getEmail() , Toast.LENGTH_SHORT).show();
+                                   // Toast.makeText(LogInActivity.this, "User"+user.getEmail() , Toast.LENGTH_SHORT).show();
 
                                 }
 
@@ -230,5 +237,38 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
         }
         Log.i ("Service status", "Not running");
         return false;
+    }
+
+    public void ResetPassword(View view) {
+        resetUserPassword(edtuname.getText().toString().trim());
+    }
+
+    public void resetUserPassword(String email){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        final ProgressDialog progressDialog = new ProgressDialog(LogInActivity.this);
+        progressDialog.setMessage("verifying..");
+        progressDialog.show();
+
+        mAuth.sendPasswordResetEmail(email)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(), "Reset password instructions has sent to your email",
+                                    Toast.LENGTH_SHORT).show();
+                        }else{
+                            progressDialog.dismiss();
+                            Toast.makeText(getApplicationContext(),
+                                    "Email don't exist", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

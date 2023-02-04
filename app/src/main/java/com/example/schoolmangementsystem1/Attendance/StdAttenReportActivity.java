@@ -39,6 +39,7 @@ public class StdAttenReportActivity extends AppCompatActivity {
 		adapterAttReport = new AdapterAttReport(list , this);
 		sharedPreferences = getSharedPreferences("my_pref" , MODE_PRIVATE);
 
+		 String month = getIntent().getStringExtra("moonth");
 		stdid = getIntent().getStringExtra("stdid");
 
 		String uid = "";
@@ -46,7 +47,7 @@ public class StdAttenReportActivity extends AppCompatActivity {
 		uid = sharedPreferences.getString("uid" , "");
 
 		databaseReferenceattreprt = FirebaseDatabase.getInstance().getReference("Classes")
-				.child(uid).child("Attendance").child("2023").child("Jan");
+				.child(uid).child("Attendance").child("2023").child(month);
 
 		Toast.makeText(this, ""+stdid, Toast.LENGTH_LONG).show();
 

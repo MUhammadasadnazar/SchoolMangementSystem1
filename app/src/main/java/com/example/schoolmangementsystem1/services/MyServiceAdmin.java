@@ -231,7 +231,6 @@ public class MyServiceAdmin extends Service {
 		//String[] mailarray = mailll.split("@");
 		//String uname = mailarray[0];
 
-		if (isstaff.equals("yes")){
 
 
 			databaseReferenceAllMessages = FirebaseDatabase.getInstance().getReference("Classes")
@@ -242,27 +241,22 @@ public class MyServiceAdmin extends Service {
 
 					for (DataSnapshot snap : snapshot.getChildren()){
 						String key = snap.getKey();
-
-						for (DataSnapshot dataSnapshot2 : snap.getChildren()){
-
+						//for (DataSnapshot dataSnapshot2 : snap.getChildren()){
 							try {
-
-
-								if (dataSnapshot2.child("reqStatus").getValue(String.class).equals("waiting"))
+								if (snap.child("reqStatus").getValue(String.class).equals("waiting"))
 								{
-									notif2(key);
+									if (isstaff.equals("yes")) {
+
+										notif2(key);
+									}
 									//  Toast.makeText(MyServiceAdmin.this, "key : true", Toast.LENGTH_SHORT).show();
 
-								}/* else {
-                            Toast.makeText(MyServiceAdmin.this, "key : false", Toast.LENGTH_SHORT).show();
-
-                        }*/
+								}
 							}catch (Exception exc){
 
 							}
 							//  String hasunread = snap.child("hasunread").getValue(String.class);
-
-						}
+					//	}
 					}
 
 
@@ -274,7 +268,7 @@ public class MyServiceAdmin extends Service {
 				}
 			});
 
-		}
+	//	}
 
 
 

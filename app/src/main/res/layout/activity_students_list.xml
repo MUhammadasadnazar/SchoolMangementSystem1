@@ -34,8 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
+                android:id="@+id/_cardviewaddnewstdent"
                 android:onClick="AddNewStuentt"
-
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="20dp"
                 app:cardCornerRadius="40dp"

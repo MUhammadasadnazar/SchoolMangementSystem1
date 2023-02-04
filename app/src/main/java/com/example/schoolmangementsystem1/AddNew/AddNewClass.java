@@ -1,5 +1,6 @@
 package com.example.schoolmangementsystem1.AddNew;
 
+import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.schoolmangementsystem1.MainActivity;
 import com.example.schoolmangementsystem1.Model.Class1;
 import com.example.schoolmangementsystem1.Model.Staff;
 import com.example.schoolmangementsystem1.R;
@@ -26,7 +28,7 @@ import java.util.UUID;
 public class AddNewClass extends AppCompatActivity  implements AdapterView.OnItemSelectedListener {
     Spinner spinner1;
     EditText edtClassTitle , edtNoStudents ;
-    String InchargeName , InchargeId = "";
+    String InchargeName = "" , InchargeId = "";
 
 
      ArrayList<String> StaffNameList;
@@ -76,7 +78,7 @@ public class AddNewClass extends AppCompatActivity  implements AdapterView.OnIte
 
                    StaffNameList.add(stafName);
                    staffArrayList.add(staff1);
-                    Toast.makeText(AddNewClass.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(AddNewClass.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -99,7 +101,7 @@ public class AddNewClass extends AppCompatActivity  implements AdapterView.OnIte
            // String stfname = staffArrayList.get(0).getStaffName();
              InchargeName = staffArrayList.get((i-1)).getStaffName();
              InchargeId = staffArrayList.get((i-1)).getStaffId();
-            Toast.makeText(AddNewClass.this, "Clicked"+i+InchargeId, Toast.LENGTH_SHORT).show();
+          //  Toast.makeText(AddNewClass.this, "Clicked"+i+InchargeId, Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -113,18 +115,41 @@ public class AddNewClass extends AppCompatActivity  implements AdapterView.OnIte
           String uuid = UUID.randomUUID()+"";
 
 
-        Class1 class1 = new Class1();
+        if (!validtaion()){
+            Toast.makeText(this, "Make Sure You have Entered All Credentials...", Toast.LENGTH_SHORT).show();
+        }else {
+            Class1 class1 = new Class1();
 
-        class1.setClassTitle(edtClassTitle.getText().toString().trim());
-        class1.setInchargeName(InchargeName+"");
-        class1.setInchargeId(InchargeId+"");
-        if (edtNoStudents.getText().toString() != null){
-            class1.setNoofStudents( Integer.parseInt(edtNoStudents.getText().toString()));
+            class1.setClassTitle(edtClassTitle.getText().toString().trim());
+            class1.setInchargeName(InchargeName + "");
+            class1.setInchargeId(InchargeId + "");
+            if (edtNoStudents.getText().toString() != null) {
+                class1.setNoofStudents(Integer.parseInt(edtNoStudents.getText().toString()));
+            }
+            class1.setClassID(uuid);
+
+            databaseReference1.child(InchargeId).child("Info").setValue(class1);
+
+            Toast.makeText(this, "Class Created Successfully...", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(AddNewClass.this , MainActivity.class);
+            finish();
+            startActivity(intent);
+
         }
-        class1.setClassID(uuid);
-
-        databaseReference1.child(InchargeId).child("Info").setValue(class1);
-
-
     }
+
+    public boolean validtaion(){
+        boolean isok = true;
+
+        if (edtClassTitle.getText().toString().trim().equals("")||
+                edtNoStudents.getText().toString().trim().equals("")||
+                InchargeName.trim().equals("")||
+                InchargeId.toString().trim().equals("")){
+
+
+            isok = false;
+        }
+        return isok;
+    }
+
 }

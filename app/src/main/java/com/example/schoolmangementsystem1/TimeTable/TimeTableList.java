@@ -42,6 +42,8 @@ public class TimeTableList extends AppCompatActivity {
 
 		day = getIntent().getStringExtra("day");
 
+		Toast.makeText(this, "uid: "+uid, Toast.LENGTH_SHORT).show();
+
 		databaseReferencetimetable = FirebaseDatabase.getInstance()
 				.getReference("Classes").child(uid).child("TimeTable").child(day);
 

@@ -6,48 +6,133 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+        android:background="@color/mainbgcolor"
     tools:context=".AddNew.CreateNewStaff">
 
+    <ImageView
+            android:layout_marginTop="20dp"
+            android:src="@drawable/mainlogo"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></ImageView>
+
+
     <LinearLayout
-        android:paddingHorizontal="30dp"
+        android:paddingHorizontal="20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center">
 
+        <TextView
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/offwhite"
+                android:text="Staff Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
         <EditText
+                android:background="@drawable/bordershape1"
             android:id="@+id/_edtstaffname"
-            android:hint="Name"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+            android:hint=""
+                android:textColor="@color/offwhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
+        <TextView
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/offwhite"
+                android:text="Home Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
         <EditText
+                android:background="@drawable/bordershape1"
+                 android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
             android:id="@+id/_edtAddress"
-            android:hint="Address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></EditText>
-        <EditText
-            android:id="@+id/_edteducation"
-            android:hint="Education"
+            android:hint=""
+                android:textColor="@color/offwhite"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
 
+        <TextView
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/offwhite"
+                android:text="Education"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
         <EditText
+                android:textColor="@color/offwhite"
+                android:background="@drawable/bordershape1"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
+            android:id="@+id/_edteducation"
+            android:hint=""
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></EditText>
+
+        <TextView
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/offwhite"
+                android:text="Contact No"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
+        <EditText
+                android:textColor="@color/offwhite"
+                android:background="@drawable/bordershape1"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
             android:id="@+id/_edtcontactNo"
-            android:hint="Contact No"
+            android:hint=""
+                android:inputType="number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
+
+        <TextView
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:layout_marginTop="20dp"
+                android:textSize="18dp"
+                android:textColor="@color/offwhite"
+                android:text="Email Address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></TextView>
+
         <EditText
+                android:textColor="@color/offwhite"
+                android:background="@drawable/bordershape1"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="14dp"
             android:id="@+id/_edtemailaddress"
-            android:hint="Email Address"
+            android:hint=""
+                android:inputType="textEmailAddress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
         <EditText
+                android:visibility="gone"
             android:id="@+id/_edtpass"
             android:hint="password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></EditText>
 
         <Button
+                android:background="@drawable/bordershape1"
             android:onClick="CreateNEwStaff"
             android:layout_margin="30dp"
             android:text="Create Staff"
