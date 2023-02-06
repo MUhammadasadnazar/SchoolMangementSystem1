@@ -12,11 +12,38 @@ public class LeaveReq {
 	String ReqApproveTimeSpan;
 	String ReqApprovalRemarks;
 	String stdUid;
+	String stdName;
+	String stdRollNo;
+	String reqid;
 
+	public String getReqid() {
+		return reqid;
+	}
 
+	public void setReqid(String reqid) {
+		this.reqid = reqid;
+	}
 
 	public LeaveReq() {
 	}
+
+	public String getStdName() {
+		return stdName;
+	}
+
+	public void setStdName(String stdName) {
+		this.stdName = stdName;
+	}
+
+	public String getStdRollNo() {
+		return stdRollNo;
+	}
+
+	public void setStdRollNo(String stdRollNo) {
+		this.stdRollNo = stdRollNo;
+	}
+
+
 
 	public String getStdUid() {
 		return stdUid;

@@ -88,8 +88,6 @@ public class MainActivity extends AppCompatActivity {
         if (!isMyServiceRunning(mYourService.getClass())) {
             startService(strtservice);
         }
-
-
     }
 
     @Override

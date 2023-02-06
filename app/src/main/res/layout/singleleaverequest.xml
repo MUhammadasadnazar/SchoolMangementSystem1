@@ -5,10 +5,16 @@
         android:layout_marginVertical="10dp"
         android:paddingVertical="5dp"
         android:paddingHorizontal="10dp"
+        android:id="@+id/_linearlayoutrequest"
         android:background="@drawable/edttextbg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+    <TextView
+            android:visibility="gone"
+            android:id="@+id/_tvstdname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
 
     <LinearLayout
             android:layout_width="match_parent"

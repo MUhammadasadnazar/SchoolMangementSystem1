@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:gravity="center"
+        android:background="@color/mainbgcolor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+            android:gravity="center"
+            android:layout_marginBottom="30dp"
+            android:textStyle="bold"
+            android:textColor="@color/offwhite"
+            android:textSize="20dp"
+            android:text="Alert Dialoge"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+
+    <TextView
+            android:textColor="@color/offwhite"
+             android:textStyle="bold"
+            android:textSize="18dp"
+            android:text="Approval / Reject Remarks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+
+        <EditText
+                android:background="@drawable/bordershape1"
+                 android:id="@+id/_edtapprovalremarks"
+                android:textColor="@color/offwhite"
+                android:layout_marginTop="5dp"
+                android:padding="10dp"
+                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"></EditText>
+
+
+    <LinearLayout
+            android:layout_margin="20dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/_btnaccept"
+                android:background="@drawable/bordershape1"
+                android:layout_margin="5dp"
+                android:text="Accept"
+                android:layout_width="0dp"
+            android:layout_weight="1"
+                android:layout_height="wrap_content"></Button>
+        <Button
+                android:id="@+id/_btnreject"
+                android:background="@drawable/bordershape1"
+                android:layout_margin="5dp"
+                android:text="Reject"
+                android:layout_width="0dp"
+            android:layout_weight="1"
+                android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+
+</LinearLayout>

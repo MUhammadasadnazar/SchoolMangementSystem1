@@ -1,6 +1,7 @@
 package com.example.schoolmangementsystem1.LeaveRequest;
 
 import java.util.Calendar;
+import java.util.UUID;
 
 import com.example.schoolmangementsystem1.MainActivity;
 import com.example.schoolmangementsystem1.R;
@@ -52,6 +53,8 @@ public class NewLeaveRequest extends AppCompatActivity {
 	public void SubmitNewRequest(View view){
 		String timestamp = Calendar.getInstance().getTime().toString();
 
+		String uuid = UUID.randomUUID()+"";
+
 		LeaveReq leaveReq = new LeaveReq();
 		leaveReq.date1 = date1;
 		leaveReq.date2 = date2;
@@ -61,8 +64,9 @@ public class NewLeaveRequest extends AppCompatActivity {
 		leaveReq.ReqStatus = "waiting";
 		leaveReq.Timespan = timestamp;
 		leaveReq.stdUid = stduid;
+		leaveReq.reqid = uuid;
 
-		reference.child("Leave").push().setValue(leaveReq);
+		reference.child("Leave").child(uuid).setValue(leaveReq);
 
 		Toast.makeText(this, "Requested Submitted Successfully...", Toast.LENGTH_SHORT).show();
 
