@@ -100,6 +100,7 @@ public class MyServiceAdmin extends Service {
 
 
 		IsDataChanged();
+		IsMeetingDataChanged();
 
 		return START_STICKY;
 	}
@@ -216,6 +217,38 @@ public class MyServiceAdmin extends Service {
 		alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
 
 	}
+	public void notif2meeting(String key) {
+
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+			CharSequence name = "CHANNEL_ID";
+			int importance = NotificationManager.IMPORTANCE_DEFAULT;
+			NotificationChannel channel = new NotificationChannel("CHANNEL_ID", name, importance);
+			NotificationManager notificationManager = getSystemService(NotificationManager.class);
+			notificationManager.createNotificationChannel(channel);
+		}
+		Intent intent = new Intent(this , MainActivity.class);
+		PendingIntent pendingIntent = PendingIntent.getActivity(this , 0 , intent , PendingIntent.FLAG_IMMUTABLE);
+		// int waitno = getWaitingNumber();
+
+		NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
+				.setSmallIcon(R.drawable.attendance)
+				.setContentTitle("New Meeting Request")
+				.setContentText("A New Meeting Req is there.....")
+				.setPriority(NotificationCompat.PRIORITY_DEFAULT)
+				.setContentIntent(pendingIntent)
+				.setAutoCancel(false);
+
+		NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
+		notificationManager.notify(0, builder.build());
+		AlarmManager alarmManager = (AlarmManager) getApplicationContext().getSystemService(ALARM_SERVICE);
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.HOUR, 1);
+		Intent intent1 = new Intent("android.action.DISPLAY_NOTIFICATION");
+		intent1.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES);
+		PendingIntent broadcast = PendingIntent.getBroadcast(this, 100, intent, PendingIntent.FLAG_IMMUTABLE);
+		alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), broadcast);
+
+	}
 
 
 	public void IsDataChanged(){
@@ -248,6 +281,62 @@ public class MyServiceAdmin extends Service {
 									if (isstaff.equals("yes")) {
 
 										notif2(key);
+									}
+									//  Toast.makeText(MyServiceAdmin.this, "key : true", Toast.LENGTH_SHORT).show();
+
+								}
+							}catch (Exception exc){
+
+							}
+							//  String hasunread = snap.child("hasunread").getValue(String.class);
+					//	}
+					}
+
+
+				}
+
+				@Override
+				public void onCancelled(@NonNull DatabaseError error) {
+
+				}
+			});
+
+	//	}
+
+
+
+	}
+	public void IsMeetingDataChanged(){
+
+
+		SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.shared_pref) , MODE_PRIVATE);
+		//class id
+		String uid = sharedPreferences.getString("uid" , "");
+
+
+		 String isstaff = sharedPreferences.getString("isstaff" , "");
+
+		//String[] mailarray = mailll.split("@");
+		//String uname = mailarray[0];
+
+
+
+			DatabaseReference databaseReferenceAllMessages = FirebaseDatabase.getInstance().getReference("Classes")
+					.child(uid).child("meetings");
+			databaseReferenceAllMessages.addValueEventListener(new ValueEventListener() {
+				@Override
+				public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+					for (DataSnapshot snap : snapshot.getChildren()){
+						String key = snap.getKey();
+						//for (DataSnapshot dataSnapshot2 : snap.getChildren()){
+							try {
+								if (snap.child("meetingStatus").getValue(String.class).equals("New"))
+								{
+									if (isstaff.equals("no")) {
+
+										notif2meeting(key);
+										//notif2(key);
 									}
 									//  Toast.makeText(MyServiceAdmin.this, "key : true", Toast.LENGTH_SHORT).show();
 

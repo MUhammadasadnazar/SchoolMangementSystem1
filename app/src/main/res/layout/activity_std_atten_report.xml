@@ -9,6 +9,10 @@
         android:background="@color/mainbgcolor"
         tools:context=".Attendance.StdAttenReportActivity">
 
+    <TextView
+            android:id="@+id/_tvcount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
     <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/_recyclerviewattreport"
             android:layout_width="match_parent"

@@ -3,8 +3,10 @@ package com.example.schoolmangementsystem1.Attendance;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import com.example.MyServerDatetime;
 import com.example.schoolmangementsystem1.Interface.onCheckChanged;
 import com.example.schoolmangementsystem1.Interface.onClickRVItem;
+import com.example.schoolmangementsystem1.MainActivity;
 import com.example.schoolmangementsystem1.Model.Student;
 import com.example.schoolmangementsystem1.R;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +37,7 @@ public class TodaysAttendance extends AppCompatActivity {
 	String date = "";
 	String timestamp = "";
 	String day1  = "";String month1 = "";
+	MyServerDatetime myServerDatetime;
 
 
 	@Override
@@ -56,16 +59,17 @@ public class TodaysAttendance extends AppCompatActivity {
 
 		}
 
+		myServerDatetime = new MyServerDatetime();
+		String datettt =  myServerDatetime.getServerDateTime(this);
 
-		timestamp = Calendar.getInstance().getTime().toString();
+		timestamp = sharedPreferences.getString("tmee" , "");
+		//timestamp = Calendar.getInstance().getTime().toString();
 
 		String[] timestamplist = timestamp.split(" ");
+		timestamplist = timestamplist[0].split("/");
 		month = timestamplist[1];
-		date = timestamplist[2];
-	//	Toast.makeText(this, "month : "+month, Toast.LENGTH_SHORT).show();
-	//	Toast.makeText(this, "date : "+date, Toast.LENGTH_SHORT).show();
-//		Toast.makeText(this, "time : "+timestamplist[0]+timestamplist[1], Toast.LENGTH_SHORT).show();
-//
+		date = timestamplist[0];
+
 		String uid = "";
 		uid = sharedPreferences.getString("uid" , "");
 
@@ -82,7 +86,7 @@ public class TodaysAttendance extends AppCompatActivity {
 					@Override
 					public void onCheckChanged(RadioGroup radioGroup, int checkid, int position, String status) {
 
-						Toast.makeText(TodaysAttendance.this, "id:" + list.get(position).getStatus(), Toast.LENGTH_SHORT).show();
+						//Toast.makeText(TodaysAttendance.this, "id:" + list.get(position).getStatus(), Toast.LENGTH_SHORT).show();
 						//Toast.makeText(TodaysAttendance.this, "id:"+checkid/(position+1), Toast.LENGTH_SHORT).show();
 					}
 				}, new onClickRVItem() {
@@ -131,6 +135,7 @@ public class TodaysAttendance extends AppCompatActivity {
 	public void LoadStudentList(){
 
 
+		list.clear();
 		databasereferencestudentslist.addValueEventListener(new ValueEventListener() {
 
 			@Override
@@ -162,6 +167,7 @@ public class TodaysAttendance extends AppCompatActivity {
 	}
 	public void LoadStudentList2(){
 
+		list.clear();
 
 		databaseReferenceattendance.child(month1).child(day1).addValueEventListener(new ValueEventListener() {
 
@@ -201,7 +207,7 @@ public class TodaysAttendance extends AppCompatActivity {
 		//databaseReferenceattendance.child(month).child(date);
 		for (int i = 0; i<list.size();i++){
 			String status = list.get(i).getStatus();
-			Toast.makeText(this, "Status:"+status, Toast.LENGTH_SHORT).show();
+			//Toast.makeText(this, "Status:"+status, Toast.LENGTH_SHORT).show();
 
 			Attendance attendance = new Attendance();
 
@@ -222,6 +228,13 @@ public class TodaysAttendance extends AppCompatActivity {
 
 			databaseReferenceattendance.child(month).child(date).child(attendance.getStdUid()+"").setValue(attendance);
 
+			Toast.makeText(this, "Attendance Saved Successfully", Toast.LENGTH_SHORT).show();
+
+			Intent intent = new Intent(TodaysAttendance.this , MainActivity.class);
+			intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+			//finish();
+			startActivity(intent);
 		}
 	}
 }

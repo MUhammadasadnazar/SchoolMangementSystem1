@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,13 +29,22 @@ public class TimeTableList extends AppCompatActivity {
 	RecyclerView recyclerView;
 	AdapterTimeTable adapterTimeTable;
 	ArrayList<Period> list;
+	CardView cardviewtimetable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_time_table_list);
 		recyclerView = findViewById(R.id.listviewtimetable);
+		cardviewtimetable = findViewById(R.id._cardviewtimetable);
 		sharedPreferences = getSharedPreferences("my_pref" , MODE_PRIVATE);
+
+		String isstaff = sharedPreferences.getString("isstaff" , "");
+
+		if (isstaff.equals("yes")){
+
+			cardviewtimetable.setVisibility(View.VISIBLE);
+		}
 
 		list = new ArrayList<Period>();
 
@@ -42,7 +52,7 @@ public class TimeTableList extends AppCompatActivity {
 
 		day = getIntent().getStringExtra("day");
 
-		Toast.makeText(this, "uid: "+uid, Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, "uid: "+uid, Toast.LENGTH_SHORT).show();
 
 		databaseReferencetimetable = FirebaseDatabase.getInstance()
 				.getReference("Classes").child(uid).child("TimeTable").child(day);
@@ -62,6 +72,8 @@ public class TimeTableList extends AppCompatActivity {
 		databaseReferencetimetable.orderByChild("lectureNo").addValueEventListener(new ValueEventListener() {
 			@Override
 			public void onDataChange(@NonNull DataSnapshot snapshot) {
+				list.clear();
+
 
 				for (DataSnapshot snapshot1 : snapshot.getChildren()){
 					//Staff staff1 = new Staff();
@@ -82,7 +94,7 @@ public class TimeTableList extends AppCompatActivity {
 					//String stafId = snapshot1.child("staffId").getValue(String.class);
 
 
-					Toast.makeText(TimeTableList.this, "Name : "+strttime, Toast.LENGTH_SHORT).show();
+					//Toast.makeText(TimeTableList.this, "Name : "+strttime, Toast.LENGTH_SHORT).show();
 				}
 
 			}

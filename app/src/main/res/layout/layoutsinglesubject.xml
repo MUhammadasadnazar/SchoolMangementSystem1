@@ -11,25 +11,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <LinearLayout
-                android:padding="5dp"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-            <TextView
-                    android:textStyle="bold"
-                    android:id="@+id/_tvsbjtitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></TextView>
-            <TextView
-                    android:textStyle="bold"
-                    android:id="@+id/_tvsbjinstructor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></TextView>
-            <TextView
-                    android:textStyle="normal"
-                    android:id="@+id/_tvsbjcourseoutline"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"></TextView>
+            <LinearLayout
+                    android:padding="5dp"
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/_tvsbjtitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></TextView>
+                <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/_tvsbjinstructor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></TextView>
+                <TextView
+                        android:textStyle="normal"
+                        android:id="@+id/_tvsbjcourseoutline"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"></TextView>
+
+            </LinearLayout>
+            <ImageView
+                    android:id="@+id/_ivdelete"
+                    android:src="@drawable/ic_baseline_delete_24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"></ImageView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

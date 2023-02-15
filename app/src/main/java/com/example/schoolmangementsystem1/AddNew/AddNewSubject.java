@@ -91,7 +91,7 @@ public class AddNewSubject extends AppCompatActivity implements AdapterView.OnIt
 
 					StaffNameList.add(stafName);
 					staffArrayList.add(staff1);
-					Toast.makeText(AddNewSubject.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
+					//Toast.makeText(AddNewSubject.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
 				}
 
 			}
@@ -120,7 +120,11 @@ public class AddNewSubject extends AppCompatActivity implements AdapterView.OnIt
 		subject.setSbjInsName(InchargeName);
 		subject.setSbjId(uuid);
 
-		databaseReferencesubjects.push().setValue(subject);
+		//databaseReferencesubjects.push().setValue(subject);
+		databaseReferencesubjects.child(uuid).setValue(subject);
+
+		Toast.makeText(this, "Subect Added SuccessFully....", Toast.LENGTH_SHORT).show();
+		finish();
 
 
 

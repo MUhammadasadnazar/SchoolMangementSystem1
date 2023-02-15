@@ -7,27 +7,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/mainbgcolor"
-        tools:context=".LeaveRequest.StdRequestList">
+        tools:context=".meeting.MeetingList">
 
     <ImageView
-            android:layout_marginTop="10dp"
             android:src="@drawable/mainlogo"
+            android:layout_gravity="right"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ImageView>
-    <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/_recyclerview1"
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="0dp"></androidx.recyclerview.widget.RecyclerView>
 
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/_recyclerviewmeeting"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <RelativeLayout
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <androidx.cardview.widget.CardView
-                android:onClick="GoToNewLeaveRequest"
-                android:id="@+id/_cardviewaddnew"
+                android:id="@+id/_cardviewAddNew"
+                android:onClick="ScheduleNewMeeting"
                 android:visibility="gone"
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="20dp"
@@ -47,6 +49,7 @@
 
         </androidx.cardview.widget.CardView>
     </RelativeLayout>
+
 
 
 </LinearLayout>

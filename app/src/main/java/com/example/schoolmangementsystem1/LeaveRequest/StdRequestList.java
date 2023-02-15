@@ -23,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,6 +36,7 @@ public class StdRequestList extends AppCompatActivity {
 	AdapterLeaveRequestList adapterLeaveRequestList;
 	RecyclerView recyclerView;
 	String isstaff = "";
+	CardView cardview;
 
 
 	@Override
@@ -44,6 +46,11 @@ public class StdRequestList extends AppCompatActivity {
 		sharedPreferences = getSharedPreferences("my_pref" , MODE_PRIVATE);
 		stdclassid = sharedPreferences.getString("uid","");
 		isstaff = sharedPreferences.getString("isstaff","");
+		cardview = findViewById(R.id._cardviewaddnew);
+
+		if (isstaff.equals("no")){
+			cardview.setVisibility(View.VISIBLE);
+		}
 
 		recyclerView = findViewById(R.id._recyclerview1);
 

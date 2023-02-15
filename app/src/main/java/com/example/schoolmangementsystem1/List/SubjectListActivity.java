@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import com.example.schoolmangementsystem1.Adapter.AdapterSubjectsList;
 import com.example.schoolmangementsystem1.AddNew.AddNewSubject;
+import com.example.schoolmangementsystem1.Interface.onClickRVItem;
 import com.example.schoolmangementsystem1.Model.Student;
 import com.example.schoolmangementsystem1.Model.Subject;
 import com.example.schoolmangementsystem1.R;
@@ -55,7 +56,18 @@ public class SubjectListActivity extends AppCompatActivity {
 				.child(uid).child("Subjects");
 
 		list = new ArrayList<Subject>();
-		adapterSubjectsList = new AdapterSubjectsList(this , list);
+		adapterSubjectsList = new AdapterSubjectsList(this, list, new onClickRVItem() {
+
+			@Override
+			public void onClickRvItem(View view, int position) {
+				if (isstaff.equals("yes")){
+					String sbjidd = list.get(position).getSbjId();
+					databasereference.child(sbjidd).removeValue();
+					adapterSubjectsList.notifyDataSetChanged();
+
+				}
+			}
+		});
 
 		LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
 		recyclerView.setLayoutManager( layoutmanager);
@@ -71,6 +83,7 @@ public class SubjectListActivity extends AppCompatActivity {
 
 			@Override
 			public void onDataChange(@NonNull DataSnapshot snapshot) {
+				list.clear();
 				for (DataSnapshot snapshot1 : snapshot.getChildren()){
 					Subject subject = new Subject();
 
@@ -78,6 +91,7 @@ public class SubjectListActivity extends AppCompatActivity {
 					subject.setSbjInsName(snapshot1.child("sbjInsName").getValue(String.class));
 					subject.setSbjcourseobjective(snapshot1.child("sbjCourseOutLine").getValue(String.class));
 
+					subject.setSbjId(snapshot1.child("sbjId").getValue(String.class));
 					list.add(subject);
 
 					adapterSubjectsList.notifyDataSetChanged();

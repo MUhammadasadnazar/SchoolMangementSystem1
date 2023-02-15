@@ -17,8 +17,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AddNewStudent extends AppCompatActivity {
     EditText edtfname , edtlname , edtRollNo , edtMobileNo , edtEmailAddress ,
@@ -29,12 +32,15 @@ public class AddNewStudent extends AppCompatActivity {
     FirebaseUser user;
     SharedPreferences sharedPreferences;
     String uid = "";
+    String stdidupdate = "";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_student);
+
+        stdidupdate = getIntent().getStringExtra("stdid");
         edtfname = findViewById(R.id._stdfname);
         edtlname = findViewById(R.id._stdlname);
         edtRollNo = findViewById(R.id._stdRollNo);
@@ -57,6 +63,12 @@ public class AddNewStudent extends AppCompatActivity {
                 .child(uid).child("Students");
 
         databaseReferencestdClassId = FirebaseDatabase.getInstance().getReference("Stdclassid");
+
+
+        if (!stdidupdate.equals("")){
+
+            LoadStudentRecord();
+        }
                 //.child(uid).child("Students");
 
 
@@ -65,41 +77,88 @@ public class AddNewStudent extends AppCompatActivity {
 
     public void SaveNewStudent(View view) {
 
+        if (!stdidupdate.equals("")){
 
-        Student student = new Student();
-        student.setStdName(edtfname.getText().toString());
-        student.setStdLastName(edtlname.getText().toString());
-        student.setStdRollNo(edtRollNo.getText().toString());
-        student.setStdEmailAddres(edtEmailAddress.getText().toString());
-        student.setStdHomeAddress(edtHomeAddress.getText().toString());
-        student.setStdMobileNo(edtMobileNo.getText().toString());
-        student.setGaurdianName(edtGaurdianName.getText().toString());
-        student.setGaurdianPhoneNo(edtgaurdianPhoennO.getText().toString());
-        student.setStdPassword("123456");
-        student.setStdClassId(uid);
+            databaseReference.child(stdidupdate).child("stdName").setValue(edtfname.getText().toString());
+            databaseReference.child(stdidupdate).child("stdLastName").setValue(edtlname.getText().toString());
+            databaseReference.child(stdidupdate).child("stdMobileNo").setValue(edtMobileNo.getText().toString());
+            databaseReference.child(stdidupdate).child("stdHomeAddress").setValue(edtHomeAddress.getText().toString());
+            databaseReference.child(stdidupdate).child("gaurdianName").setValue(edtGaurdianName.getText().toString());
+            databaseReference.child(stdidupdate).child("gaurdianPhoneNo").setValue(edtgaurdianPhoennO.getText().toString());
 
-        firebaseAuthStudent.createUserWithEmailAndPassword(edtEmailAddress.getText().toString() , "123456")
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+        }
+        else {
+            Student student = new Student();
+            student.setStdName(edtfname.getText().toString());
+            student.setStdLastName(edtlname.getText().toString());
+            student.setStdRollNo(edtRollNo.getText().toString());
+            student.setStdEmailAddres(edtEmailAddress.getText().toString());
+            student.setStdHomeAddress(edtHomeAddress.getText().toString());
+            student.setStdMobileNo(edtMobileNo.getText().toString());
+            student.setGaurdianName(edtGaurdianName.getText().toString());
+            student.setGaurdianPhoneNo(edtgaurdianPhoennO.getText().toString());
+            student.setStdPassword("123456");
+            student.setStdClassId(uid);
 
-                        if (task.isSuccessful()){
-                            student.setStdID(firebaseAuthStudent.getCurrentUser().getUid());
+            firebaseAuthStudent.createUserWithEmailAndPassword(edtEmailAddress.getText().toString() , "123456")
+                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            databaseReference.child(firebaseAuthStudent.getCurrentUser().getUid())
-                                    .setValue(student);
+                            if (task.isSuccessful()){
+                                student.setStdID(firebaseAuthStudent.getCurrentUser().getUid());
 
-                            databaseReferencestdClassId.child(firebaseAuthStudent.getCurrentUser().getUid())
-                                    .child("id").setValue(uid);
+                                databaseReference.child(firebaseAuthStudent.getCurrentUser().getUid())
+                                        .setValue(student);
+
+                                databaseReferencestdClassId.child(firebaseAuthStudent.getCurrentUser().getUid())
+                                        .child("id").setValue(uid);
+
+                            }
+                            else {
+                                Log.d("StdError" , "er"+task.getException());
+                                Toast.makeText(AddNewStudent.this, "Exception"+task.getException(), Toast.LENGTH_SHORT).show();
+                            }
 
                         }
-                        else {
-                            Log.d("StdError" , "er"+task.getException());
-                            Toast.makeText(AddNewStudent.this, "Exception"+task.getException(), Toast.LENGTH_SHORT).show();
-                        }
+                    });
 
-                    }
-                });
+        }
+
+
+
+    }
+
+    public void LoadStudentRecord(){
+        databaseReference.child(stdidupdate).addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String stdname = snapshot.child("stdName").getValue(String.class);
+                edtfname.setText(stdname);
+
+                String stdlname = snapshot.child("stdLastName").getValue(String.class);
+                edtlname.setText(stdlname);
+
+                String stdmobno = snapshot.child("stdMobileNo").getValue(String.class);
+                edtMobileNo.setText(stdmobno);
+
+                String stdhaddress = snapshot.child("stdHomeAddress").getValue(String.class);
+                edtHomeAddress.setText(stdhaddress);
+
+                String stdgname = snapshot.child("gaurdianName").getValue(String.class);
+                edtGaurdianName.setText(stdgname);
+
+                String stdgpno = snapshot.child("gaurdianPhoneNo").getValue(String.class);
+                edtgaurdianPhoennO.setText(stdgpno);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 }

@@ -1,10 +1,20 @@
 package com.example.schoolmangementsystem1;
 
+import static com.google.firebase.database.ServerValue.TIMESTAMP;
+
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,20 +24,26 @@ import android.view.View;
 import android.widget.Button;
 import kotlin.text.UStringsKt;
 
+import com.example.MyServerDatetime;
 import com.example.schoolmangementsystem1.AddNew.AddNewClass;
 import com.example.schoolmangementsystem1.AddNew.CreateNewStaff;
 import com.example.schoolmangementsystem1.Attendance.MonthListActivity;
+import com.example.schoolmangementsystem1.Complaint.StudentListActivity2;
 import com.example.schoolmangementsystem1.LeaveRequest.StdRequestList;
+import com.example.schoolmangementsystem1.List.StaffList;
 import com.example.schoolmangementsystem1.List.StudentsListActivity;
 import com.example.schoolmangementsystem1.List.SubjectListActivity;
 import com.example.schoolmangementsystem1.TimeTable.DaysListActivity;
+import com.example.schoolmangementsystem1.meeting.MeetingList;
 import com.example.schoolmangementsystem1.services.MyServiceAdmin;
 import com.example.schoolmangementsystem1.services.Restarter;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -37,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseStorage storageReference;
     Button btnCreateNewStaff , btnAddNewCLass;
     LinearLayout linearlayoutstdentsubject;
+    MyServerDatetime myServerDatetime;
+    TextView tvleavecount;
 
     DatabaseReference databaseReference , databaseReferenceStaff ;
 
@@ -48,20 +66,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tvleavecount = findViewById(R.id._tvleavecount);
         btnCreateNewStaff = findViewById(R.id._btnCreateNewStaff);
         btnAddNewCLass = findViewById(R.id._btnAddNewClass);
         linearlayoutstdentsubject = ( LinearLayout) findViewById(R.id._linearlayoutstdentsubject);
 
         //uid as class id and uid2 as USer ID
 
+
         sharedPreferences = getSharedPreferences("my_pref" , MODE_PRIVATE);
         editor = sharedPreferences.edit();
        //clAss ID And Incharge ID
         isstaff = sharedPreferences.getString("isstaff" , "");
 
-       // Intent intent = getIntent();
-       // uid = intent.getStringExtra("uid");
-       // uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        myServerDatetime = new MyServerDatetime();
+        String datettt =  myServerDatetime.getServerDateTime(this);
 
         if (isstaff.equals("yes")){
 
@@ -71,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             databaseReferenceStaff = FirebaseDatabase.getInstance().getReference().child("Staff").child(uid);
 
             LoadClass();
+            LoadWaitingLeaveRequests(uid);
 
 
 
@@ -90,6 +110,45 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void LoadWaitingLeaveRequests(String classid){
+       // final int[] count = { 0 };
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference()
+                .child("Classes").child(classid).child("Leave");
+
+
+
+        reference.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int count  = 0;
+              //  Toast.makeText(MainActivity.this, "stt : "+snapshot, Toast.LENGTH_SHORT).show();
+
+                for (DataSnapshot snapshot1 : snapshot.getChildren()){
+
+                   // String stst = snapshot1.child("reqStatus").getValue(String.class);
+                    if (snapshot1.child("reqStatus").getValue(String.class).equals("waiting")){
+
+                        count = count+1;
+                        tvleavecount.setText(count+"");
+                      //  count[0] = count[0] +1;
+                    }
+                }
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+      //  tvleavecount.setText(count[0]+"");
+
+
+    }
     @Override
     protected void onDestroy() {
 
@@ -169,7 +228,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void CreateNewStaff(View view) {
-        Intent intent = new Intent(MainActivity.this , CreateNewStaff.class);
+        Intent intent = new Intent(MainActivity.this , StaffList.class);
         startActivity(intent);
     }
 
@@ -206,6 +265,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void GoToSubjectList(View view) {
+
+
+
+      /*  String dtteee = sharedPreferences.getString("tmee" , "nill");
+
+       // Toast.makeText(this, "date : "+datettt, Toast.LENGTH_SHORT).show();
+
+       // String dtteee = sharedPreferences.getString("tmee" , "nill");
+
+        Toast.makeText(this, "date : "+dtteee, Toast.LENGTH_SHORT).show();*/
         Intent intent = new Intent(MainActivity.this , SubjectListActivity.class);
         startActivity(intent);
     }
@@ -227,5 +296,15 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("uid" , stdid);
             startActivity(intent);
       //  }
+    }
+
+    public void GoTOMeetingList(View view) {
+        Intent intent = new Intent(MainActivity.this , MeetingList.class);
+         startActivity(intent);
+    }
+
+    public void goToComplaint(View view) {
+        Intent intent = new Intent(MainActivity.this , StudentListActivity2.class);
+        startActivity(intent);
     }
 }

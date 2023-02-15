@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.example.schoolmangementsystem1.Adapter.AdapterStudentList;
 import com.example.schoolmangementsystem1.AddNew.AddNewStudent;
+import com.example.schoolmangementsystem1.Interface.onClickRVItem;
 import com.example.schoolmangementsystem1.Model.Student;
 import com.example.schoolmangementsystem1.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -55,6 +56,8 @@ public class StudentsListActivity extends AppCompatActivity {
              cardviewaddnewstdent.setVisibility(View.GONE);
          }
 
+
+
         //String uid = "vHKiHvEXm9fFYVamj27NgQEodxR2";
        // String uid = "zhiRCFXtJHgKa5emMTbDpUdpNKg2";
         databasereference = FirebaseDatabase.getInstance().getReference("Classes")
@@ -67,7 +70,19 @@ public class StudentsListActivity extends AppCompatActivity {
 
            // listStudents.add(new Student("name 1223" , "LastName" , "56563789"));
 
-            adapterStudentList = new AdapterStudentList(StudentsListActivity.this , listStudents);
+            adapterStudentList = new AdapterStudentList(StudentsListActivity.this, listStudents, new onClickRVItem() {
+
+                @Override
+                public void onClickRvItem(View view, int position) {
+
+                    if (isstaff.equals("yes")){
+                        Intent intent = new Intent(StudentsListActivity.this , AddNewStudent.class);
+                        intent.putExtra("stdid" , listStudents.get(position).getStdID());
+                        startActivity(intent);
+
+                    }
+                }
+            });
         LinearLayoutManager layoutmanager = new LinearLayoutManager(this);
         recyclerViewstdlist.setLayoutManager( layoutmanager);
         recyclerViewstdlist.setAdapter(adapterStudentList);
@@ -94,12 +109,15 @@ public class StudentsListActivity extends AppCompatActivity {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                listStudents.clear();
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
                     Student student = new Student();
 
                     student.setStdName(snapshot1.child("stdName").getValue(String.class));
                      student.setStdLastName(snapshot1.child("stdLastName").getValue(String.class));
                      student.setStdRollNo(snapshot1.child("stdRollNo").getValue(String.class));
+                    // student.setstd(snapshot1.child("stdRollNo").getValue(String.class));
+                    student.setStdID(snapshot1.child("stdID").getValue(String.class));
 
                      listStudents.add(student);
 
@@ -121,6 +139,7 @@ public class StudentsListActivity extends AppCompatActivity {
 
     public void AddNewStuentt(View view) {
         Intent intent = new Intent(StudentsListActivity.this , AddNewStudent.class);
+        intent.putExtra("stdid" , "");
         startActivity(intent);
     }
 }

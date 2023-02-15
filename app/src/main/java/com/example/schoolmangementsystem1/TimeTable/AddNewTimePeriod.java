@@ -41,7 +41,8 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 	ArrayList<Subject> SubjectArrayList;
 	String day = "";
 
-	String sbjId , sbjTitle , sbjIntructor , sbjinstrId , sbjType , strttime , endtime  = "" ;
+	String sbjId = "" , sbjTitle = "" , sbjIntructor = "" , sbjinstrId = "" , sbjType = ""
+			, strttime = "" , endtime  = "" ;
 
 
 
@@ -158,7 +159,7 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 
 					StaffNameList.add(stafName);
 					staffArrayList.add(staff1);
-					Toast.makeText(AddNewTimePeriod.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
+					//Toast.makeText(AddNewTimePeriod.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
 				}
 
 			}
@@ -231,7 +232,7 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 				 sbjTitle = sbjType;
 
 			 }
-				Toast.makeText(this, "Type"+type, Toast.LENGTH_SHORT).show();
+				//Toast.makeText(this, "Type"+type, Toast.LENGTH_SHORT).show();
   			}
 		}
 		 else if (adapterView.getId() == R.id.spinnerstafflist){
@@ -252,7 +253,7 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 			    // String stfname = staffArrayList.get(0).getStaffName();
 			    String InchargeName = SubjectArrayList.get((i-1)).getSbjTitle();
 			    String InchargeId = SubjectArrayList.get((i-1)).getSbjId();
-			    Toast.makeText(AddNewTimePeriod.this, "Clicked"+i+InchargeName, Toast.LENGTH_SHORT).show();
+			  //  Toast.makeText(AddNewTimePeriod.this, "Clicked"+i+InchargeName, Toast.LENGTH_SHORT).show();
 
 				sbjIntructor = SubjectArrayList.get((i-1)).getSbjInsName();
 				sbjTitle = SubjectArrayList.get((i-1)).getSbjTitle();
@@ -270,17 +271,29 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 
 	public void saveNewTimeTable(View view) {
 
-		Period period = new Period();
 
-		period.setLectureTimeStart(strttime+"");
-		period.setLectureTimeEnd(endtime+"");
-		period.setLectureInstructureId(sbjinstrId);
-		period.setLectureInstructureName(sbjIntructor+"");
-		period.setLectureType(sbjType+"");
-		period.setLectureSubject(sbjTitle+"");
-		period.setLectureSubjectID(sbjId+"");
+		if (strttime.equals("") || endtime.equals("") || sbjId.equals("") || sbjType.equals("")){
+			Toast.makeText(this, "Please fill all the Information Carefully", Toast.LENGTH_SHORT).show();
+		}
+		else {
+			Period period = new Period();
 
-		databaseReferenceperiod.child(sbjTitle).setValue(period);
+			period.setLectureTimeStart(strttime+"");
+			period.setLectureTimeEnd(endtime+"");
+			period.setLectureInstructureId(sbjinstrId);
+			period.setLectureInstructureName(sbjIntructor+"");
+			period.setLectureType(sbjType+"");
+			period.setLectureSubject(sbjTitle+"");
+			period.setLectureSubjectID(sbjId+"");
+
+			databaseReferenceperiod.child(sbjTitle).setValue(period);
+
+			Toast.makeText(this, "Success MSG", Toast.LENGTH_SHORT).show();
+
+			finish();
+		}
+
+
 
 	}
 }

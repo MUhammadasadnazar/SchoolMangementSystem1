@@ -84,8 +84,8 @@
                 android:layout_height="100dp"></EditText>
 
         <Button
-                android:onClick="SubmitNewRequest"
-                android:background="@color/edttextbg"
+                 android:onClick="SubmitNewRequest"
+                android:background="@drawable/bordershape1"
                 android:layout_margin="20dp"
                 android:text="Save"
                 android:layout_width="match_parent"

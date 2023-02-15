@@ -132,6 +132,7 @@
             android:layout_height="wrap_content"></EditText>
 
         <Button
+                android:id="@+id/_btnnewstaff"
                 android:background="@drawable/bordershape1"
             android:onClick="CreateNEwStaff"
             android:layout_margin="30dp"

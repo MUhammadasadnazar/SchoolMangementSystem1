@@ -12,6 +12,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,6 +29,10 @@ public class StdAttenReportActivity extends AppCompatActivity {
 	SharedPreferences sharedPreferences;
 	DatabaseReference databaseReferenceattreprt;
 	String stdid = "";
+	int presentcount = 0;
+	int leavecount = 0;
+	int absentcount = 0;
+	TextView tvcount ;
 
 
 	@Override
@@ -35,6 +40,7 @@ public class StdAttenReportActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_std_atten_report);
 		recyclerView = findViewById(R.id._recyclerviewattreport);
+		tvcount = findViewById(R.id._tvcount);
 		list =  new ArrayList<Attendance>();
 		adapterAttReport = new AdapterAttReport(list , this);
 		sharedPreferences = getSharedPreferences("my_pref" , MODE_PRIVATE);
@@ -68,11 +74,12 @@ public class StdAttenReportActivity extends AppCompatActivity {
 			public void onDataChange(@NonNull DataSnapshot snapshot) {
 				//Toast.makeText(StdAttenReportActivity.this, "toast", Toast.LENGTH_SHORT).show();
 
+				list.clear();
 				for (DataSnapshot snapshot1 : snapshot.getChildren()){
 
 					for (DataSnapshot snapshot2 : snapshot1.getChildren()){
 
-						Toast.makeText(StdAttenReportActivity.this, "toast1"+snapshot2.getKey(), Toast.LENGTH_SHORT).show();
+						//Toast.makeText(StdAttenReportActivity.this, "toast1"+snapshot2.getKey(), Toast.LENGTH_SHORT).show();
 						Attendance attendance = new Attendance();
 
 						if (snapshot2.getKey().toString().equals(stdid)){
@@ -80,7 +87,19 @@ public class StdAttenReportActivity extends AppCompatActivity {
 							String month = snapshot2.child("attmonth").getValue(String.class);
 							String status = snapshot2.child("status").getValue(String.class);
 
-							Toast.makeText(StdAttenReportActivity.this, "toast1"+status, Toast.LENGTH_SHORT).show();
+							if(status.equals("Present")){
+								presentcount = presentcount+1;
+							}
+							else if (status.equals("Absent")){
+								absentcount = absentcount+1;
+							}
+							else if(status.equals("Leave")){
+								leavecount = leavecount+1;
+							}
+
+							tvcount.setText("Present : "+presentcount +" , Absent : "+absentcount+" , Leave : "+leavecount);
+
+							//Toast.makeText(StdAttenReportActivity.this, "toast1"+status, Toast.LENGTH_SHORT).show();
 
 
 							attendance.setAttDate(date+"");

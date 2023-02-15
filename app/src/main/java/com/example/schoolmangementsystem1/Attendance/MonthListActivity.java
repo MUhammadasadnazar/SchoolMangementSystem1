@@ -98,7 +98,7 @@ public class MonthListActivity extends AppCompatActivity implements AdapterView.
 
 
 					adapter.notifyDataSetChanged();
-				Toast.makeText(MonthListActivity.this, "val"+snapshot1.getKey(), Toast.LENGTH_SHORT).show();
+				//Toast.makeText(MonthListActivity.this, "val"+snapshot1.getKey(), Toast.LENGTH_SHORT).show();
 
 				}
 			}

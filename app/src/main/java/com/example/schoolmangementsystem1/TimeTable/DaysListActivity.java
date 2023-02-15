@@ -40,14 +40,7 @@ public class DaysListActivity extends AppCompatActivity implements AdapterView.O
 		dayslist.add("Saturday");
 		dayslist.add("Sunday");
 
-		for (int i = 0; i<2;i++){
 
-			long count1 = GetNoOfLectures(dayslist.get(i).toString() , i);
-			//Toast.makeText(this, "count "+count1, Toast.LENGTH_SHORT).show();
-			/*if (count1 > 0){
-				dayslist.set(i , dayslist.get(i)+"\t"+count1+" Lectures");
-			}*/
-		}
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1 , dayslist);
 
 		adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
@@ -55,6 +48,17 @@ public class DaysListActivity extends AppCompatActivity implements AdapterView.O
 		listViewDayslist.setAdapter(adapter);
 
 		listViewDayslist.setOnItemClickListener(this);
+
+		for (int i = 0; i<dayslist.size();i++){
+
+			long count1 = GetNoOfLectures(dayslist.get(i).toString() , i);
+
+			adapter.notifyDataSetChanged();
+			//Toast.makeText(this, "count "+count1, Toast.LENGTH_SHORT).show();
+			/*if (count1 > 0){
+				dayslist.set(i , dayslist.get(i)+"\t"+count1+" Lectures");
+			}*/
+		}
 
 
 	}
@@ -76,7 +80,7 @@ public class DaysListActivity extends AppCompatActivity implements AdapterView.O
 					count234[0] = 	snapshot.getChildrenCount();
 
 				if (count234[0] > 0){
-					dayslist.set(i , dayslist.get(i)+"\t"+count234[0]+" Lectures");
+					dayslist.set(i , dayslist.get(i)+"\t( "+count234[0]+" Lectures ) ");
 				}
 					//Toast.makeText(DaysListActivity.this, "val"+count[0], Toast.LENGTH_SHORT).show();
 

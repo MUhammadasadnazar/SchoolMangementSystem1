@@ -3,6 +3,7 @@ package com.example.schoolmangementsystem1.LeaveRequest;
 import java.util.Calendar;
 import java.util.UUID;
 
+import com.example.MyServerDatetime;
 import com.example.schoolmangementsystem1.MainActivity;
 import com.example.schoolmangementsystem1.R;
 import com.google.firebase.database.DatabaseReference;
@@ -24,12 +25,13 @@ import android.os.Bundle;
 
 public class NewLeaveRequest extends AppCompatActivity {
 	DatePicker datePicker1,datePicker2;
-	String date1 , date2 , remarks , submittedby , reason = "";
+	String date1 = "" , date2 = "" , remarks , submittedby , reason = "";
 	EditText edtsubmittedby , edtreqremarks , edtreqreason ;
 	String stduid , stdclassid = "";
 	SharedPreferences sharedPreferences;
 
 	DatabaseReference reference;
+	String timestamp = "";
 
 
 	@Override
@@ -46,33 +48,53 @@ public class NewLeaveRequest extends AppCompatActivity {
 		stduid = getIntent().getStringExtra("uid");
 		stdclassid = sharedPreferences.getString("uid" , "");
 
+		MyServerDatetime myServerDatetime = new MyServerDatetime();
+
+		myServerDatetime.getServerDateTime(this);
+		timestamp = sharedPreferences.getString("tmee" , "");
+
 		reference = FirebaseDatabase.getInstance().getReference().child("Classes").child(stdclassid);
 
 	}
 
 	public void SubmitNewRequest(View view){
-		String timestamp = Calendar.getInstance().getTime().toString();
+		//timestamp = Calendar.getInstance().getTime().toString();
+		timestamp = sharedPreferences.getString("tmee" , "");
 
-		String uuid = UUID.randomUUID()+"";
 
-		LeaveReq leaveReq = new LeaveReq();
-		leaveReq.date1 = date1;
-		leaveReq.date2 = date2;
-		leaveReq.ReqBy = edtsubmittedby.getText().toString()+"";
-		leaveReq.ReqReason = edtreqreason.getText().toString()+"";
-		leaveReq.ReqRemarks = edtreqremarks.getText().toString()+"";
-		leaveReq.ReqStatus = "waiting";
-		leaveReq.Timespan = timestamp;
-		leaveReq.stdUid = stduid;
-		leaveReq.reqid = uuid;
+		if (date1.equals("") || date2.equals("")
+				||edtsubmittedby.getText().toString().equals("")
+				||edtreqreason.getText().toString().equals("")
+				||edtreqremarks.getText().toString().equals("")){
+			Toast.makeText(this, "Please add All the Fields...", Toast.LENGTH_SHORT).show();
 
-		reference.child("Leave").child(uuid).setValue(leaveReq);
+		}
+		else {
 
-		Toast.makeText(this, "Requested Submitted Successfully...", Toast.LENGTH_SHORT).show();
 
-		Intent intent = new Intent(NewLeaveRequest.this , MainActivity.class);
-		startActivity(intent);
-		finish();
+			String uuid = UUID.randomUUID()+"";
+
+			LeaveReq leaveReq = new LeaveReq();
+			leaveReq.date1 = date1;
+			leaveReq.date2 = date2;
+			leaveReq.ReqBy = edtsubmittedby.getText().toString()+"";
+			leaveReq.ReqReason = edtreqreason.getText().toString()+"";
+			leaveReq.ReqRemarks = edtreqremarks.getText().toString()+"";
+			leaveReq.ReqStatus = "waiting";
+			leaveReq.Timespan = timestamp;
+			leaveReq.stdUid = stduid;
+			leaveReq.reqid = uuid;
+
+			reference.child("Leave").child(uuid).setValue(leaveReq);
+
+			Toast.makeText(this, "Requested Submitted Successfully...", Toast.LENGTH_SHORT).show();
+
+			Intent intent = new Intent(NewLeaveRequest.this , MainActivity.class);
+			startActivity(intent);
+			finish();
+
+		}
+
 
 	}
 
