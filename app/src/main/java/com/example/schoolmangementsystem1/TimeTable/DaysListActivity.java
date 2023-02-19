@@ -23,6 +23,7 @@ import android.os.Bundle;
 public class DaysListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 	ListView listViewDayslist;
 	ArrayList<String> dayslist;
+	ArrayAdapter<String> adapter;
 
 	SharedPreferences sharedPreferences;
 	@Override
@@ -41,7 +42,7 @@ public class DaysListActivity extends AppCompatActivity implements AdapterView.O
 		dayslist.add("Sunday");
 
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1 , dayslist);
+		 adapter = new ArrayAdapter<String>(this , android.R.layout.simple_list_item_1 , dayslist);
 
 		adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
 
@@ -81,6 +82,8 @@ public class DaysListActivity extends AppCompatActivity implements AdapterView.O
 
 				if (count234[0] > 0){
 					dayslist.set(i , dayslist.get(i)+"\t( "+count234[0]+" Lectures ) ");
+					adapter.notifyDataSetChanged();
+
 				}
 					//Toast.makeText(DaysListActivity.this, "val"+count[0], Toast.LENGTH_SHORT).show();
 

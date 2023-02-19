@@ -38,6 +38,7 @@
                 android:onClick="AddNewComplaniint"
                 android:layout_marginBottom="20dp"
                 android:layout_marginRight="20dp"
+                android:visibility="gone"
                 app:cardCornerRadius="40dp"
                 app:cardBackgroundColor="@color/edttextbg"
                 android:layout_alignParentRight="true"

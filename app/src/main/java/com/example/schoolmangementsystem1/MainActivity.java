@@ -28,6 +28,7 @@ import com.example.MyServerDatetime;
 import com.example.schoolmangementsystem1.AddNew.AddNewClass;
 import com.example.schoolmangementsystem1.AddNew.CreateNewStaff;
 import com.example.schoolmangementsystem1.Attendance.MonthListActivity;
+import com.example.schoolmangementsystem1.Complaint.ComplaintListActivity;
 import com.example.schoolmangementsystem1.Complaint.StudentListActivity2;
 import com.example.schoolmangementsystem1.LeaveRequest.StdRequestList;
 import com.example.schoolmangementsystem1.List.StaffList;
@@ -304,7 +305,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToComplaint(View view) {
-        Intent intent = new Intent(MainActivity.this , StudentListActivity2.class);
-        startActivity(intent);
+        if (isstaff.equals("yes")){
+            Intent intent = new Intent(MainActivity.this , StudentListActivity2.class);
+            startActivity(intent);
+
+        }
+        else {
+            Intent intent = new Intent(MainActivity.this , ComplaintListActivity.class);
+            intent.putExtra("stdid" , stdid);
+            startActivity(intent);
+        }
+
     }
 }

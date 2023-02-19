@@ -370,7 +370,7 @@
                                     android:layout_height="wrap_content">
                                 <ImageView
                                         android:layout_gravity="center"
-                                        android:src="@drawable/leave"
+                                        android:src="@drawable/bell"
                                         android:layout_width="100dp"
                                         android:layout_height="100dp"></ImageView>
                                 <TextView
@@ -403,7 +403,7 @@
                                 android:layout_height="wrap_content">
                             <ImageView
                                     android:layout_gravity="center"
-                                    android:src="@drawable/meeting"
+                                    android:src="@drawable/meeting1"
                                     android:layout_width="100dp"
                                     android:layout_height="100dp"></ImageView>
                             <TextView

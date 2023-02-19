@@ -82,6 +82,71 @@
 
 
         </LinearLayout>
+        <LinearLayout
+                android:padding="20dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/edttextbg"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:textStyle="bold"
+                        android:text="Guardian Name  "
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"></TextView>
+                <TextView
+                        android:id="@+id/_GMobileno"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:textStyle="bold"
+                        android:text="Guar-Phone #  "
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"></TextView>
+                <TextView
+                        android:gravity="center"
+                        android:id="@+id/_Gemailaddress"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <TextView
+                        android:textStyle="bold"
+                        android:text="Home Address"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"></TextView>
+                <TextView
+                        android:gravity="center"
+                        android:id="@+id/_Ghomeaddress"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"                    android:layout_height="wrap_content"></TextView>
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
 
     </LinearLayout>
 

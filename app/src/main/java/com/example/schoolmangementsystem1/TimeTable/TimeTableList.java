@@ -82,11 +82,13 @@ public class TimeTableList extends AppCompatActivity {
 					String strtend = snapshot1.child("lectureTimeEnd").getValue(String.class);
 					String subject1 = snapshot1.child("lectureSubject").getValue(String.class);
 					String lectureType = snapshot1.child("lectureType").getValue(String.class);
+					String lectureInstructureName = snapshot1.child("lectureInstructureName").getValue(String.class);
 
 					period.setLectureTimeStart(strttime);
 					period.setLectureTimeEnd(strtend);
 					period.setLectureType(lectureType);
 					period.setLectureSubject(subject1);
+					period.setLectureInstructureName(lectureInstructureName);
 
 					list.add(period);
 

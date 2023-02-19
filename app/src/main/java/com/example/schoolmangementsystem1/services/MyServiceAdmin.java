@@ -230,8 +230,11 @@ public class MyServiceAdmin extends Service {
 		PendingIntent pendingIntent = PendingIntent.getActivity(this , 0 , intent , PendingIntent.FLAG_IMMUTABLE);
 		// int waitno = getWaitingNumber();
 
+		int no = 787788;
+
+
 		NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "CHANNEL_ID")
-				.setSmallIcon(R.drawable.attendance)
+				.setSmallIcon(R.drawable.meeting)
 				.setContentTitle("New Meeting Request")
 				.setContentText("A New Meeting Req is there.....")
 				.setPriority(NotificationCompat.PRIORITY_DEFAULT)

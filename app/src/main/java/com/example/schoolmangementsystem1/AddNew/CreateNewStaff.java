@@ -83,7 +83,7 @@ public class CreateNewStaff extends AppCompatActivity {
                           @Override
                           public void onComplete(@NonNull Task<AuthResult> task) {
                               if (task.isSuccessful()){
-                                  Toast.makeText(CreateNewStaff.this, "User Created", Toast.LENGTH_SHORT).show();
+                                  Toast.makeText(CreateNewStaff.this, "Staff Created SuccessFully", Toast.LENGTH_SHORT).show();
                                   //                    userlist.add(new User(firebaseAuth.getCurrentUser().getUid(),edtname.getText().toString(),edtpass.getText().toString()));
 
 
@@ -102,9 +102,9 @@ public class CreateNewStaff extends AppCompatActivity {
                                           .setValue(staff);
 
                                   Toast.makeText(CreateNewStaff.this, "Operation Successfull...", Toast.LENGTH_SHORT).show();
-                                  Intent intent= new Intent(CreateNewStaff.this, MainActivity.class);
+                                 // Intent intent= new Intent(CreateNewStaff.this, MainActivity.class);
                                   finish();
-                                  startActivity(intent);
+                                 // startActivity(intent);
                               }
                               else
                               if (!task.isSuccessful()){

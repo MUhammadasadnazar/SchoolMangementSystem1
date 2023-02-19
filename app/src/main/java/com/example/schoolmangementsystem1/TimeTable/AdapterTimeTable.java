@@ -33,10 +33,10 @@ public class AdapterTimeTable extends RecyclerView.Adapter<AdapterTimeTable.View
 	@Override
 	public void onBindViewHolder(@NonNull AdapterTimeTable.ViewHolder holder, int position) {
 
-		holder.textViewtime.setText(list.get(position).getLectureTimeStart()+"-"+list.get(position).getLectureTimeEnd());
+		holder.textViewtime.setText(list.get(position).getLectureTimeStart()+" \t-\t "+list.get(position).getLectureTimeEnd());
 
 		holder.textViewsubject.setText(list.get(position).getLectureSubject()+"");
-		holder.textViewtype.setText(list.get(position).getLectureType()+"");
+		holder.textViewtype.setText(list.get(position).getLectureType()+" \t( "+list.get(position).getLectureInstructureName()+" )");
 	}
 
 	@Override

@@ -106,11 +106,12 @@ public class StdRequestList extends AppCompatActivity {
 	//For Student
 	public void LoadRequestList(){
 
-		list.clear();
 		reference.child("Leave").addValueEventListener(new ValueEventListener() {
 
 			@Override
 			public void onDataChange(@NonNull DataSnapshot snapshot) {
+				list.clear();
+
 				for (DataSnapshot snapshot1 : snapshot.getChildren()){
 
 					if (snapshot1.child("stdUid").getValue(String.class).equals(stduid)){
@@ -152,11 +153,12 @@ public class StdRequestList extends AppCompatActivity {
 	//For Staff
 	public void LoadRequestList2(){
 
-		list.clear();
 		reference.child("Leave").addValueEventListener(new ValueEventListener() {
 
 			@Override
 			public void onDataChange(@NonNull DataSnapshot snapshot) {
+				list.clear();
+
 				for (DataSnapshot snapshot1 : snapshot.getChildren()){
 
 					snapshot.getKey();

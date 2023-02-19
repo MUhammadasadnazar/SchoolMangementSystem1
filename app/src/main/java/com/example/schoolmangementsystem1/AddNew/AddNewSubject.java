@@ -66,7 +66,7 @@ public class AddNewSubject extends AppCompatActivity implements AdapterView.OnIt
 
 		GetStaffList();
 
-		StaffNameList.add("Select Class Instructure");
+		StaffNameList.add("Select Subject Instructure");
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_dropdown_item , StaffNameList);
 
@@ -89,8 +89,11 @@ public class AddNewSubject extends AppCompatActivity implements AdapterView.OnIt
 					staff1.setStaffId(stafId);
 					staff1.setStaffName(stafName);
 
-					StaffNameList.add(stafName);
-					staffArrayList.add(staff1);
+					if (stafName != null){
+						StaffNameList.add(stafName);
+						staffArrayList.add(staff1);
+					}
+
 					//Toast.makeText(AddNewSubject.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
 				}
 
@@ -112,19 +115,26 @@ public class AddNewSubject extends AppCompatActivity implements AdapterView.OnIt
 		String uuid = UUID.randomUUID()+"";
 		Subject subject = new Subject();
 
-		subject.setSbjTitle(edtsbjtitle.getText().toString());
-		subject.setSbjNoLectures(edtsbjnolectures.getText().toString());
-		subject.setSbjCourseOutLine(edtsbjoutline.getText().toString());
-		subject.setSbjClassId(uid);
-		subject.setSbjInsId(InchargeId);
-		subject.setSbjInsName(InchargeName);
-		subject.setSbjId(uuid);
+		if (edtsbjtitle.getText().toString().equals("") || edtsbjoutline.getText().toString().equals("")){
+			Toast.makeText(this, "Please Make Sure You Entered All Credentials...", Toast.LENGTH_SHORT).show();
+		}
+		else {
 
-		//databaseReferencesubjects.push().setValue(subject);
-		databaseReferencesubjects.child(uuid).setValue(subject);
+			subject.setSbjTitle(edtsbjtitle.getText().toString());
+			subject.setSbjNoLectures(edtsbjnolectures.getText().toString());
+			subject.setSbjCourseOutLine(edtsbjoutline.getText().toString());
+			subject.setSbjClassId(uid);
+			subject.setSbjInsId(InchargeId);
+			subject.setSbjInsName(InchargeName);
+			subject.setSbjId(uuid);
 
-		Toast.makeText(this, "Subect Added SuccessFully....", Toast.LENGTH_SHORT).show();
-		finish();
+			//databaseReferencesubjects.push().setValue(subject);
+			databaseReferencesubjects.child(uuid).setValue(subject);
+
+			Toast.makeText(this, "Subect Added SuccessFully....", Toast.LENGTH_SHORT).show();
+			finish();
+
+		}
 
 
 
@@ -136,7 +146,7 @@ public class AddNewSubject extends AppCompatActivity implements AdapterView.OnIt
 			// String stfname = staffArrayList.get(0).getStaffName();
 			InchargeName = staffArrayList.get((i-1)).getStaffName();
 			InchargeId = staffArrayList.get((i-1)).getStaffId();
-			Toast.makeText(AddNewSubject.this, "Clicked"+i+InchargeId, Toast.LENGTH_SHORT).show();
+		//	Toast.makeText(AddNewSubject.this, "Clicked"+i+InchargeId, Toast.LENGTH_SHORT).show();
 
 		}
 

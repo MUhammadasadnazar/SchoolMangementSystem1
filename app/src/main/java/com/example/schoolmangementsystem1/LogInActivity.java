@@ -86,7 +86,13 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
         mAuth = FirebaseAuth.getInstance();
         if (mAuth.getCurrentUser()!= null){
             Intent intent = new Intent(LogInActivity.this , MainActivity.class);
-            intent.putExtra("uid" , mAuth.getCurrentUser().getUid()+"");
+            String iddd = sharedPreferences.getString("uid" , "");
+
+           // if (!iddd.equals("")){
+              //   intent.putExtra("uid" , iddd+"");
+
+           // }
+          //  intent.putExtra("uid" , mAuth.getCurrentUser().getUid()+"");
            // editor.putString("uid" , mAuth.getCurrentUser().getUid()+"");
            // editor.commit();
             finish();
@@ -96,14 +102,14 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
 
     public boolean CheckIsStaff(String id,FirebaseUser user){
         final Boolean[] isstaff = { false };
-        Toast.makeText(this, "id : "+id, Toast.LENGTH_SHORT).show();
+       // Toast.makeText(this, "id : "+id, Toast.LENGTH_SHORT).show();
         databaseReferencestafflist.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
-                    Toast.makeText(LogInActivity.this, "key : "+snapshot1.getKey(), Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(LogInActivity.this, "key : "+snapshot1.getKey(), Toast.LENGTH_SHORT).show();
 
 
                     if (snapshot1.getKey().equals(id)){
@@ -135,7 +141,7 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
 
         if (isstaff){
             Intent intent = new Intent(LogInActivity.this , MainActivity.class);
-            intent.putExtra("uid",user.getUid()+"");
+           // intent.putExtra("uid",user.getUid()+"");
             editor.putString("uid" , user.getUid()+"");
             editor.putString("uid2" , user.getUid()+"");
             editor.putString("isstaff" , "yes");

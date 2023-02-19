@@ -70,14 +70,18 @@ public class AddNewClass extends AppCompatActivity  implements AdapterView.OnIte
 
                 for (DataSnapshot snapshot1 : snapshot.getChildren()){
                     Staff staff1 = new Staff();
-                   String stafName = snapshot1.child("staffName").getValue(String.class);
+                   String stafName = "";
+                   stafName = snapshot1.child("staffName").getValue(String.class);
                    String stafId = snapshot1.child("staffId").getValue(String.class);
 
                    staff1.setStaffId(stafId);
                    staff1.setStaffName(stafName);
 
-                   StaffNameList.add(stafName);
-                   staffArrayList.add(staff1);
+                   if (stafName != null){
+                       StaffNameList.add(stafName);
+                       staffArrayList.add(staff1);
+                   }
+
                    // Toast.makeText(AddNewClass.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
                 }
 

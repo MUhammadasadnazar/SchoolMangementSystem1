@@ -16,7 +16,7 @@
 
 
     <LinearLayout
-            android:paddingHorizontal="10dp"
+            android:paddingHorizontal="15dp"
             android:orientation="vertical"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -29,10 +29,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></TextView>
         <EditText
+                android:padding="10dp"
                 android:id="@+id/_edttitle"
                 android:textColor="@color/offwhite"
-                android:paddingVertical="10dp"
-                android:background="@drawable/bordershape1"
+                 android:background="@drawable/bordershape1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></EditText>
         <TextView
@@ -43,9 +43,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"></TextView>
         <EditText
+                android:padding="10dp"
                 android:id="@+id/_edtdes"
                 android:inputType="textMultiLine"
-                android:height="200dp"
+                android:height="100dp"
                 android:textColor="@color/offwhite"
                 android:paddingVertical="10dp"
                 android:background="@drawable/bordershape1"

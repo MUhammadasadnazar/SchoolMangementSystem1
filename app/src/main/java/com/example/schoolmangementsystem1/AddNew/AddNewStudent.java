@@ -92,7 +92,7 @@ public class AddNewStudent extends AppCompatActivity {
             student.setStdName(edtfname.getText().toString());
             student.setStdLastName(edtlname.getText().toString());
             student.setStdRollNo(edtRollNo.getText().toString());
-            student.setStdEmailAddres(edtEmailAddress.getText().toString());
+            student.setStdEmailAddres(edtEmailAddress.getText().toString().trim());
             student.setStdHomeAddress(edtHomeAddress.getText().toString());
             student.setStdMobileNo(edtMobileNo.getText().toString());
             student.setGaurdianName(edtGaurdianName.getText().toString());
@@ -100,28 +100,40 @@ public class AddNewStudent extends AppCompatActivity {
             student.setStdPassword("123456");
             student.setStdClassId(uid);
 
-            firebaseAuthStudent.createUserWithEmailAndPassword(edtEmailAddress.getText().toString() , "123456")
-                    .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+            if (edtEmailAddress.getText().toString().trim().equals("")  || edtRollNo.getText().toString().equals("")
+                    || edtfname.getText().toString().equals("")){
+                Toast.makeText(this, "Please Make Sure You Have Entered All Credentials.", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                firebaseAuthStudent.createUserWithEmailAndPassword(edtEmailAddress.getText().toString() , "123456")
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            if (task.isSuccessful()){
-                                student.setStdID(firebaseAuthStudent.getCurrentUser().getUid());
+                                if (task.isSuccessful()){
+                                    student.setStdID(firebaseAuthStudent.getCurrentUser().getUid());
 
-                                databaseReference.child(firebaseAuthStudent.getCurrentUser().getUid())
-                                        .setValue(student);
+                                    databaseReference.child(firebaseAuthStudent.getCurrentUser().getUid())
+                                            .setValue(student);
 
-                                databaseReferencestdClassId.child(firebaseAuthStudent.getCurrentUser().getUid())
-                                        .child("id").setValue(uid);
+                                    databaseReferencestdClassId.child(firebaseAuthStudent.getCurrentUser().getUid())
+                                            .child("id").setValue(uid);
+
+                                    Toast.makeText(AddNewStudent.this, "Student Added Succesfully....", Toast.LENGTH_SHORT).show();
+
+                                    finish();
+                                }
+                                else {
+                                    Log.d("StdError" , "er"+task.getException());
+                                    Toast.makeText(AddNewStudent.this, "Exception"+task.getException(), Toast.LENGTH_SHORT).show();
+                                }
 
                             }
-                            else {
-                                Log.d("StdError" , "er"+task.getException());
-                                Toast.makeText(AddNewStudent.this, "Exception"+task.getException(), Toast.LENGTH_SHORT).show();
-                            }
+                        });
 
-                        }
-                    });
+            }
+
+
 
         }
 

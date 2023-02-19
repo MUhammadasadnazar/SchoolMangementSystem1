@@ -6,10 +6,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -21,7 +23,7 @@ public class StudentProfileActivity extends AppCompatActivity {
 
 	DatabaseReference reference;
 
-	TextView tvname , tvstdrollno , tvstdmobleno , tvemailaddress;
+	TextView tvname , tvstdrollno , tvstdmobleno , tvemailaddress , tvgname , tvgpno , tvhomeaddress;
 
 
 	@Override
@@ -35,6 +37,10 @@ public class StudentProfileActivity extends AppCompatActivity {
 		tvstdmobleno = findViewById(R.id._Mobileno);
 		tvemailaddress = findViewById(R.id._emailaddress);
 
+		tvgname = findViewById(R.id._GMobileno);
+		tvgpno = findViewById(R.id._Gemailaddress);
+		tvhomeaddress = findViewById(R.id._Ghomeaddress);
+
 		sharedPreferences = getSharedPreferences(getString(R.string.shared_pref) , MODE_PRIVATE);
 
 		stdclassid = sharedPreferences.getString("uid" , "");
@@ -46,6 +52,10 @@ public class StudentProfileActivity extends AppCompatActivity {
 		Toast.makeText(this, "classid"+stdclassid, Toast.LENGTH_SHORT).show();
 
 		getStdProfileDetails();
+
+
+
+
 	}
 
 	public void getStdProfileDetails(){
@@ -60,11 +70,21 @@ public class StudentProfileActivity extends AppCompatActivity {
 					String stdrollno = snapshot.child("stdRollNo").getValue(String.class);
 					String stdmobleno = snapshot.child("stdMobileNo").getValue(String.class);
 					String emailaddress = snapshot.child("stdEmailAddres").getValue(String.class);
+					String gaurdianName = snapshot.child("gaurdianName").getValue(String.class);
+					String gaurdianPhoneNo = snapshot.child("gaurdianPhoneNo").getValue(String.class);
+					String stdHomeAddress = snapshot.child("stdHomeAddress").getValue(String.class);
 
-					tvname.setText(stdfname+"\t"+stdlname);
+				//stdHomeAddress
+
+
+				tvname.setText(stdfname+"\t"+stdlname);
 					tvstdrollno.setText(stdrollno+"");
 				     tvstdmobleno.setText(stdmobleno);
 					 tvemailaddress.setText(emailaddress);
+
+					 tvgname.setText(gaurdianName+"");
+					 tvgpno.setText(gaurdianPhoneNo+"");
+					 tvhomeaddress.setText(stdHomeAddress+"");
 
 
 				//	}

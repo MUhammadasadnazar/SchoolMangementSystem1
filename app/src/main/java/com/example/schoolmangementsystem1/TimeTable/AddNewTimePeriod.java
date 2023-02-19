@@ -19,6 +19,7 @@ import android.os.Build;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -37,12 +38,14 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 	ArrayList<String> StaffNameList;
 	ArrayList<Staff> staffArrayList;
 
+
 	ArrayList<String> SubjectNameList;
 	ArrayList<Subject> SubjectArrayList;
 	String day = "";
 
 	String sbjId = "" , sbjTitle = "" , sbjIntructor = "" , sbjinstrId = "" , sbjType = ""
 			, strttime = "" , endtime  = "" ;
+
 
 
 
@@ -83,6 +86,8 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 		classTypeList.add("Fun And Arts");
 		classTypeList.add("Ethics");
 
+
+
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_dropdown_item , classTypeList);
 
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -107,6 +112,7 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 		GetSubjectList();
 
 		SubjectNameList.add("Select Subject");
+
 
 		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this , android.R.layout.simple_spinner_dropdown_item , SubjectNameList);
 
@@ -157,8 +163,12 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 					staff1.setStaffId(stafId);
 					staff1.setStaffName(stafName);
 
-					StaffNameList.add(stafName);
-					staffArrayList.add(staff1);
+					if (stafName != null){
+
+						StaffNameList.add(stafName);
+						staffArrayList.add(staff1);
+					}
+
 					//Toast.makeText(AddNewTimePeriod.this, "Name : "+StaffNameList.size(), Toast.LENGTH_SHORT).show();
 				}
 
@@ -259,6 +269,7 @@ public class AddNewTimePeriod extends AppCompatActivity implements AdapterView.O
 				sbjTitle = SubjectArrayList.get((i-1)).getSbjTitle();
 				sbjinstrId = SubjectArrayList.get((i-1)).getSbjInsId();
 				sbjId = SubjectArrayList.get((i-1)).getSbjId();
+
 
 		    }
 	    }
