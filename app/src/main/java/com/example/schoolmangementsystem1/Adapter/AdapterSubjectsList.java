@@ -7,8 +7,10 @@ import org.w3c.dom.Text;
 import com.example.schoolmangementsystem1.Interface.onClickRVItem;
 import com.example.schoolmangementsystem1.Model.Subject;
 import com.example.schoolmangementsystem1.R;
+import com.google.android.material.tabs.TabLayout;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,6 +45,14 @@ public class AdapterSubjectsList extends RecyclerView.Adapter<AdapterSubjectsLis
 
 	@Override
 	public void onBindViewHolder(@NonNull AdapterSubjectsList.ViewHolder holder, int position) {
+
+		SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.shared_pref) , Context.MODE_PRIVATE);
+
+		String isstaff = sharedPreferences.getString("isstaff" , "");
+
+		if (isstaff.equals("no")){
+			holder.ivselete.setVisibility(View.GONE);
+		}
 		holder.tvsbjname.setText(list.get(position).getSbjTitle()+"");
 		holder.tvsbjinstructure.setText(list.get(position).getSbjInsName()+"");
 		holder.tvsbjdes.setText(list.get(position).getSbjcourseobjective()+"");

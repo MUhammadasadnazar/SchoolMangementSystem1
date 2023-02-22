@@ -10,11 +10,27 @@
         android:background="@color/mainbgcolor"
     tools:context=".MainActivity">
 
-    <ImageView
-             android:src="@drawable/mainlogo"
-            android:layout_gravity="right"
+    <RelativeLayout
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></ImageView>
+            android:layout_height="wrap_content">
+
+        <ImageView
+                android:layout_centerInParent="true"
+                android:src="@drawable/mainlogo"
+                android:layout_gravity="right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"></ImageView>
+
+        <ImageView
+                android:onClick="LogOut"
+                android:src="@drawable/logoutt"
+                android:layout_alignParentRight="true"
+                android:layout_width="50dp"
+                android:layout_height="50dp"></ImageView>
+
+    </RelativeLayout>
 
     <ScrollView
             android:layout_width="match_parent"
@@ -423,7 +439,8 @@
             </LinearLayout>
 
             <Button
-                    android:onClick="LogOut"
+                    android:visibility="gone"
+                     android:onClick="LogOut"
                     android:layout_marginHorizontal="30dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

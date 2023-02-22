@@ -40,7 +40,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"></TextView>
             <LinearLayout
-                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -48,18 +50,16 @@
                         android:layout_marginVertical="10dp"
                         android:id="@+id/_datepicker1"
                         android:onClick="ShowDatePicker"
-                        android:layout_marginRight="10dp"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="100dp"></DatePicker>
+                         android:layout_width="wrap_content"
+                         android:layout_height="90dp"></DatePicker>
 
                 <TimePicker
+                        android:layout_marginHorizontal="10dp"
                         android:layout_marginVertical="10dp"
                         android:id="@+id/_tpickerfrom"
                         android:onClick="ShowTimePicker"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="100dp"  >
+                        android:layout_width="wrap_content"
+                         android:layout_height="90dp"  >
 
                 </TimePicker>
             </LinearLayout>

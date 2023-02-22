@@ -14,84 +14,91 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ImageView>
 
-    <LinearLayout
-            android:layout_marginHorizontal="10dp"
-            android:orientation="vertical"
-            android:gravity="center"
+    <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
         <LinearLayout
-                android:orientation="horizontal"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical"
+                android:gravity="center"
                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content">
-            <DatePicker
-                    android:id="@+id/_datepicker1"
-                    android:onClick="ShowDatePicker"
+                android:layout_height="match_parent">
+            <LinearLayout
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <DatePicker
+                        android:id="@+id/_datepicker1"
+                        android:onClick="ShowDatePicker"
+                        android:layout_margin="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="90dp"></DatePicker>
+                <DatePicker
+                        android:id="@+id/_datepicker2"
+                        android:onClick="ShowDatePicker"
+                        android:layout_margin="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="90dp"></DatePicker>
+            </LinearLayout>
+            <TextView
                     android:layout_margin="10dp"
-                    android:layout_width="0dp"
-                android:layout_weight="1"
-                    android:layout_height="100dp"></DatePicker>
-            <DatePicker
-                    android:id="@+id/_datepicker2"
-                    android:onClick="ShowDatePicker"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
+                    android:text="Request Submitted by : "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+            <EditText
+                    android:id="@+id/_edtreqsubmitby"
+                    android:textColor="@color/white"
+                    android:padding="14dp"
+                    android:background="@drawable/bordershape1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></EditText>
+            <TextView
                     android:layout_margin="10dp"
-                    android:layout_width="0dp"
-                android:layout_weight="1"
-                    android:layout_height="100dp"></DatePicker>
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
+                    android:text="Request Reason : "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+            <EditText
+                    android:id="@+id/_edtreqreason"
+                    android:textColor="@color/white"
+                    android:padding="14dp"
+                    android:background="@drawable/bordershape1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></EditText>
+            <TextView
+                    android:layout_margin="10dp"
+                    android:textSize="18dp"
+                    android:textColor="@color/white"
+                    android:text="Request Remarks : "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></TextView>
+            <EditText
+                    android:inputType="textMultiLine"
+                    android:id="@+id/_edtreqremarks"
+                    android:textColor="@color/white"
+                    android:padding="14dp"
+                    android:background="@drawable/bordershape1"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"></EditText>
+
+            <Button
+                    android:onClick="SubmitNewRequest"
+                    android:background="@drawable/bordershape1"
+                    android:layout_margin="20dp"
+                    android:text="Save"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"></Button>
+
         </LinearLayout>
-        <TextView
-                android:layout_margin="10dp"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:text="Request Submitted by : "
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
-        <EditText
-                android:id="@+id/_edtreqsubmitby"
-                 android:textColor="@color/white"
-                android:padding="14dp"
-                android:background="@drawable/bordershape1"
-                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
-        <TextView
-                android:layout_margin="10dp"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:text="Request Reason : "
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
-        <EditText
-                android:id="@+id/_edtreqreason"
-                 android:textColor="@color/white"
-                android:padding="14dp"
-                android:background="@drawable/bordershape1"
-                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></EditText>
-        <TextView
-                android:layout_margin="10dp"
-                android:textSize="18dp"
-                android:textColor="@color/white"
-                android:text="Request Remarks : "
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></TextView>
-        <EditText
-                android:inputType="textMultiLine"
-                android:id="@+id/_edtreqremarks"
-                 android:textColor="@color/white"
-                android:padding="14dp"
-                android:background="@drawable/bordershape1"
-                 android:layout_width="match_parent"
-                android:layout_height="100dp"></EditText>
 
-        <Button
-                 android:onClick="SubmitNewRequest"
-                android:background="@drawable/bordershape1"
-                android:layout_margin="20dp"
-                android:text="Save"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"></Button>
+    </ScrollView>
 
-    </LinearLayout>
 
 
 </LinearLayout>
