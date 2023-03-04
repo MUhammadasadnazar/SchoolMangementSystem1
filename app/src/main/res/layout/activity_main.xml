@@ -17,7 +17,7 @@
             android:layout_height="wrap_content">
 
         <ImageView
-                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
                 android:src="@drawable/mainlogo"
                 android:layout_gravity="right"
                 android:layout_width="wrap_content"
@@ -33,20 +33,29 @@
     </RelativeLayout>
 
     <ScrollView
+            android:layout_weight="1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp">
         <LinearLayout
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
             <LinearLayout
+                    android:visibility="gone"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                <LinearLayout
+                <ImageView
                         android:visibility="gone"
-                        android:id="@+id/_linearlayoutstdentsubject"
+                        android:layout_gravity="center"
+                        android:src="@drawable/book"
+                        android:layout_width="200dp"
+                         android:layout_height="200dp"></ImageView>
+                <LinearLayout
+                         android:id="@+id/_linearlayoutstdentsubject"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -95,10 +104,12 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                             <ImageView
+                                    android:padding="10dp"
+                                    android:layout_marginTop="20dp"
                                     android:layout_gravity="center"
                                     android:src="@drawable/classs"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"></ImageView>
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"></ImageView>
                             <TextView
                                     android:textSize="18dp"
                                     android:textColor="@color/white"
@@ -114,179 +125,28 @@
                 </LinearLayout>
 
             </LinearLayout>
-
             <LinearLayout
+                     android:id="@+id/_linearlayoutAllstuff"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <LinearLayout
-                        android:orientation="horizontal"
+                        android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <androidx.cardview.widget.CardView
-                            android:onClick="AddNewStudent"
-                            android:layout_margin="20dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:outlineAmbientShadowColor="@color/boxbgcolor"
-                            app:cardCornerRadius="10dp"
-                            app:cardBackgroundColor="@color/boxbgcolor"
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                        <LinearLayout
-                                android:layout_margin="10dp"
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
+                        <androidx.cardview.widget.CardView
+                                android:onClick="AddNewStudent"
+                                android:layout_margin="20dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:outlineAmbientShadowColor="@color/boxbgcolor"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/boxbgcolor"
                                 android:layout_height="wrap_content">
-                            <ImageView
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/student"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"></ImageView>
-                            <TextView
-                                    android:textSize="18dp"
-                                    android:textColor="@color/white"
-                                    android:gravity="center"
-                                    android:text="Student"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"></TextView>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                            android:onClick="GoToSubjectList"
-                            android:layout_margin="20dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp"
-                            android:paddingVertical="10dp"
-                            app:cardBackgroundColor="@color/boxbgcolor"
-                            android:layout_height="wrap_content">
-                        <LinearLayout
-                                android:layout_margin="10dp"
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                            <ImageView
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/subject"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"></ImageView>
-                            <TextView
-                                    android:textSize="18dp"
-                                    android:textColor="@color/white"
-                                    android:gravity="center"
-                                    android:text="Subjects"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"></TextView>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <androidx.cardview.widget.CardView
-                            android:onClick="GoToTimeTable"                    android:layout_margin="20dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:outlineAmbientShadowColor="@color/boxbgcolor"
-                            app:cardCornerRadius="10dp"
-                            app:cardBackgroundColor="@color/boxbgcolor"
-                            android:layout_height="wrap_content">
-                        <LinearLayout
-                                android:layout_margin="10dp"
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                            <ImageView
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/timetable"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"></ImageView>
-                            <TextView
-                                    android:textSize="18dp"
-                                    android:textColor="@color/white"
-                                    android:gravity="center"
-                                    android:text="TimeTable"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"></TextView>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                            android:onClick="GoToAttendance"
-                            android:layout_margin="20dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp"
-                            android:paddingVertical="10dp"
-                            app:cardBackgroundColor="@color/boxbgcolor"
-                            android:layout_height="wrap_content">
-                        <LinearLayout
-                                android:layout_margin="10dp"
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
-                            <ImageView
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/attendance"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"></ImageView>
-                            <TextView
-                                    android:textSize="18dp"
-                                    android:textColor="@color/white"
-                                    android:gravity="center"
-                                    android:text="Attendance"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"></TextView>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <androidx.cardview.widget.CardView
-                            android:onClick="goToLeaveRequest"                    android:layout_margin="20dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            android:outlineAmbientShadowColor="@color/boxbgcolor"
-                            app:cardCornerRadius="10dp"
-                            app:cardBackgroundColor="@color/boxbgcolor"
-                            android:layout_height="wrap_content">
-                        <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                            <TextView
-                                    android:id="@+id/_tvleavecount"
-                                    android:layout_marginTop="10dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:textStyle="bold"
-                                    android:textSize="30dp"
-                                    android:text="0"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"></TextView>
                             <LinearLayout
                                     android:layout_margin="10dp"
                                     android:orientation="vertical"
@@ -294,91 +154,29 @@
                                     android:layout_height="wrap_content">
                                 <ImageView
                                         android:layout_gravity="center"
-                                        android:src="@drawable/leave"
+                                        android:src="@drawable/student"
                                         android:layout_width="100dp"
                                         android:layout_height="100dp"></ImageView>
                                 <TextView
                                         android:textSize="18dp"
                                         android:textColor="@color/white"
                                         android:gravity="center"
-                                        android:text="Leave Request"
+                                        android:text="Student"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"></TextView>
 
                             </LinearLayout>
 
-                        </RelativeLayout>
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                            android:onClick="GoTOMeetingList"
-                            android:layout_margin="20dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp"
-                            android:paddingVertical="10dp"
-                            app:cardBackgroundColor="@color/boxbgcolor"
-                            android:layout_height="wrap_content">
-                        <LinearLayout
-                                android:layout_margin="10dp"
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                                android:onClick="GoToSubjectList"
+                                android:layout_margin="20dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="10dp"
+                                android:paddingVertical="10dp"
+                                app:cardBackgroundColor="@color/boxbgcolor"
                                 android:layout_height="wrap_content">
-                            <ImageView
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/meeting"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"></ImageView>
-                            <TextView
-                                    android:textSize="18dp"
-                                    android:textColor="@color/white"
-                                    android:gravity="center"
-                                    android:text="Meetings"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"></TextView>
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
-
-                </LinearLayout>
-
-            </LinearLayout>
-            <LinearLayout
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <LinearLayout
-                        android:weightSum="4"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <TextView
-                            android:layout_width="0dp"
-                        android:layout_weight="1"
-                            android:layout_height="wrap_content"></TextView>
-                    <androidx.cardview.widget.CardView
-
-                            android:onClick="goToComplaint"
-                            android:layout_margin="20dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="2"
-                            android:outlineAmbientShadowColor="@color/boxbgcolor"
-                            app:cardCornerRadius="10dp"
-                            app:cardBackgroundColor="@color/boxbgcolor"
-                            android:layout_height="wrap_content">
-                        <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent">
-
-                            <TextView
-                                     android:layout_marginTop="10dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:textStyle="bold"
-                                    android:textSize="30dp"
-                                    android:text=""
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"></TextView>
                             <LinearLayout
                                     android:layout_margin="10dp"
                                     android:orientation="vertical"
@@ -386,57 +184,278 @@
                                     android:layout_height="wrap_content">
                                 <ImageView
                                         android:layout_gravity="center"
-                                        android:src="@drawable/bell"
+                                        android:src="@drawable/subject"
                                         android:layout_width="100dp"
                                         android:layout_height="100dp"></ImageView>
                                 <TextView
                                         android:textSize="18dp"
                                         android:textColor="@color/white"
                                         android:gravity="center"
-                                        android:text="Complaint"
+                                        android:text="Subjects"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"></TextView>
 
                             </LinearLayout>
 
-                        </RelativeLayout>
+                        </androidx.cardview.widget.CardView>
 
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                            android:visibility="gone"
-                            android:onClick="GoTOMeetingList"
-                            android:layout_margin="20dp"
-                            android:layout_width="0dp"
-                            android:layout_weight="1"
-                            app:cardCornerRadius="10dp"
-                            android:paddingVertical="10dp"
-                            app:cardBackgroundColor="@color/boxbgcolor"
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                        <LinearLayout
-                                android:layout_margin="10dp"
-                                android:orientation="vertical"
-                                android:layout_width="match_parent"
+                        <androidx.cardview.widget.CardView
+                                android:onClick="GoToTimeTable"                    android:layout_margin="20dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:outlineAmbientShadowColor="@color/boxbgcolor"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/boxbgcolor"
                                 android:layout_height="wrap_content">
-                            <ImageView
-                                    android:layout_gravity="center"
-                                    android:src="@drawable/meeting1"
-                                    android:layout_width="100dp"
-                                    android:layout_height="100dp"></ImageView>
-                            <TextView
-                                    android:textSize="18dp"
-                                    android:textColor="@color/white"
-                                    android:gravity="center"
-                                    android:text="Meetings"
+                            <LinearLayout
+                                    android:layout_margin="10dp"
+                                    android:orientation="vertical"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"></TextView>
+                                    android:layout_height="wrap_content">
+                                <ImageView
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/timetable"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"></ImageView>
+                                <TextView
+                                        android:textSize="18dp"
+                                        android:textColor="@color/white"
+                                        android:gravity="center"
+                                        android:text="TimeTable"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"></TextView>
 
-                        </LinearLayout>
+                            </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                                android:onClick="GoToAttendance"
+                                android:layout_margin="20dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="10dp"
+                                android:paddingVertical="10dp"
+                                app:cardBackgroundColor="@color/boxbgcolor"
+                                android:layout_height="wrap_content">
+                            <LinearLayout
+                                    android:layout_margin="10dp"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                <ImageView
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/attendance"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"></ImageView>
+                                <TextView
+                                        android:textSize="18dp"
+                                        android:textColor="@color/white"
+                                        android:gravity="center"
+                                        android:text="Attendance"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"></TextView>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <androidx.cardview.widget.CardView
+                                android:onClick="goToLeaveRequest"                    android:layout_margin="20dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:outlineAmbientShadowColor="@color/boxbgcolor"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/boxbgcolor"
+                                android:layout_height="wrap_content">
+                            <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                <TextView
+                                        android:id="@+id/_tvleavecount"
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:textStyle="bold"
+                                        android:textSize="30dp"
+                                        android:text="0"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"></TextView>
+                                <LinearLayout
+                                        android:layout_margin="10dp"
+                                        android:orientation="vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+                                    <ImageView
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/leave"
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"></ImageView>
+                                    <TextView
+                                            android:textSize="18dp"
+                                            android:textColor="@color/white"
+                                            android:gravity="center"
+                                            android:text="Leave Request"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"></TextView>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                                android:onClick="GoTOMeetingList"
+                                android:layout_margin="20dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="10dp"
+                                android:paddingVertical="10dp"
+                                app:cardBackgroundColor="@color/boxbgcolor"
+                                android:layout_height="wrap_content">
+                            <LinearLayout
+                                    android:layout_margin="10dp"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                <ImageView
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/meeting"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"></ImageView>
+                                <TextView
+                                        android:textSize="18dp"
+                                        android:textColor="@color/white"
+                                        android:gravity="center"
+                                        android:text="Meetings"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"></TextView>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <LinearLayout
+                            android:weightSum="4"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                        <TextView
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="wrap_content"></TextView>
+                        <androidx.cardview.widget.CardView
+
+                                android:onClick="goToComplaint"
+                                android:layout_margin="20dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="2"
+                                android:outlineAmbientShadowColor="@color/boxbgcolor"
+                                app:cardCornerRadius="10dp"
+                                app:cardBackgroundColor="@color/boxbgcolor"
+                                android:layout_height="wrap_content">
+                            <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent">
+
+                                <TextView
+                                        android:layout_marginTop="10dp"
+                                        android:layout_marginLeft="10dp"
+                                        android:textStyle="bold"
+                                        android:textSize="30dp"
+                                        android:text=""
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"></TextView>
+                                <LinearLayout
+                                        android:layout_margin="10dp"
+                                        android:orientation="vertical"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content">
+                                    <ImageView
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/ic_baseline_notifications_24"
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"></ImageView>
+                                    <TextView
+                                            android:textSize="18dp"
+                                            android:textColor="@color/white"
+                                            android:gravity="center"
+                                            android:text="Complaint"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"></TextView>
+
+                                </LinearLayout>
+
+                            </RelativeLayout>
+
+                        </androidx.cardview.widget.CardView>
+                        <androidx.cardview.widget.CardView
+                                android:visibility="gone"
+                                android:onClick="GoTOMeetingList"
+                                android:layout_margin="20dp"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="10dp"
+                                android:paddingVertical="10dp"
+                                app:cardBackgroundColor="@color/boxbgcolor"
+                                android:layout_height="wrap_content">
+                            <LinearLayout
+                                    android:layout_margin="10dp"
+                                    android:orientation="vertical"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                <ImageView
+                                        android:layout_gravity="center"
+                                        android:src="@drawable/meeting1"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"></ImageView>
+                                <TextView
+                                        android:textSize="18dp"
+                                        android:textColor="@color/white"
+                                        android:gravity="center"
+                                        android:text="Meetings"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"></TextView>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
+
+
 
             <Button
                     android:visibility="gone"

@@ -55,7 +55,7 @@ public class StdAttenReportActivity extends AppCompatActivity {
 		databaseReferenceattreprt = FirebaseDatabase.getInstance().getReference("Classes")
 				.child(uid).child("Attendance").child("2023").child(month);
 
-		Toast.makeText(this, ""+stdid, Toast.LENGTH_LONG).show();
+	//	Toast.makeText(this, ""+stdid, Toast.LENGTH_LONG).show();
 
 		Log.d("reference123" , databaseReferenceattreprt+"");
 

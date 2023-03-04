@@ -188,7 +188,7 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
 
                                     Intent intent = new Intent(LogInActivity.this , MainActivity.class);
                                     intent.putExtra("uid",user.getUid()+"");
-                                    editor.putString("uid" , user.getUid()+"");
+                                    //editor.putString("uid" , user.getUid()+"");
                                     editor.putString("uid2" , user.getUid()+"");
                                     editor.putString("isstaff" , "no");
                                     editor.commit();
@@ -246,7 +246,14 @@ public class LogInActivity extends AppCompatActivity implements RadioGroup.OnChe
     }
 
     public void ResetPassword(View view) {
-        resetUserPassword(edtuname.getText().toString().trim());
+
+        if(edtuname.getText().toString().trim().isEmpty()){
+            Toast.makeText(this, "Please Enter Your Email Address First..", Toast.LENGTH_SHORT).show();
+        }
+        else if (!edtuname.getText().toString().trim().isEmpty()){
+            resetUserPassword(edtuname.getText().toString().trim());
+
+        }
     }
 
     public void resetUserPassword(String email){

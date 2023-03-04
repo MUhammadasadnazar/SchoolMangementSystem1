@@ -135,9 +135,9 @@ public class AddNewClass extends AppCompatActivity  implements AdapterView.OnIte
             databaseReference1.child(InchargeId).child("Info").setValue(class1);
 
             Toast.makeText(this, "Class Created Successfully...", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(AddNewClass.this , MainActivity.class);
+           // Intent intent = new Intent(AddNewClass.this , MainActivity.class);
             finish();
-            startActivity(intent);
+           // startActivity(intent);
 
         }
     }

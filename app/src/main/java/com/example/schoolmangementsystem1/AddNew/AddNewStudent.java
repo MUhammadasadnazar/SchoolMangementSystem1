@@ -2,6 +2,7 @@ package com.example.schoolmangementsystem1.AddNew;
 
 import android.content.SharedPreferences;
 import android.util.Log;
+import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -25,7 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AddNewStudent extends AppCompatActivity {
     EditText edtfname , edtlname , edtRollNo , edtMobileNo , edtEmailAddress ,
-            edtHomeAddress , edtGaurdianName , edtgaurdianPhoennO;
+            edtHomeAddress , edtGaurdianName , edtgaurdianPhoennO , edtpass;
 
     FirebaseAuth firebaseAuth , firebaseAuthStudent;
     DatabaseReference databaseReference , databaseReferencestdClassId;
@@ -33,6 +34,7 @@ public class AddNewStudent extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     String uid = "";
     String stdidupdate = "";
+    Button btnsave;
 
 
     @Override
@@ -41,11 +43,13 @@ public class AddNewStudent extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_student);
 
         stdidupdate = getIntent().getStringExtra("stdid");
+        btnsave = findViewById(R.id.btnsave);
         edtfname = findViewById(R.id._stdfname);
         edtlname = findViewById(R.id._stdlname);
         edtRollNo = findViewById(R.id._stdRollNo);
         edtMobileNo = findViewById(R.id._stdmobileNo);
         edtEmailAddress = findViewById(R.id._stdEmailAddress);
+        edtpass = findViewById(R.id._stdpass);
 
         edtHomeAddress = findViewById(R.id._stdHomeAddress);
         edtGaurdianName = findViewById(R.id._stdGaurdianName);
@@ -66,6 +70,12 @@ public class AddNewStudent extends AppCompatActivity {
 
 
         if (!stdidupdate.equals("")){
+            edtRollNo.setEnabled(false);
+            edtEmailAddress.setEnabled(false);
+            edtpass.setEnabled(false);
+            btnsave.setText("Update");
+
+
 
             LoadStudentRecord();
         }
@@ -86,6 +96,7 @@ public class AddNewStudent extends AppCompatActivity {
             databaseReference.child(stdidupdate).child("gaurdianName").setValue(edtGaurdianName.getText().toString());
             databaseReference.child(stdidupdate).child("gaurdianPhoneNo").setValue(edtgaurdianPhoennO.getText().toString());
 
+            Toast.makeText(this, "Changes Saved SuccessFully....", Toast.LENGTH_SHORT).show();
         }
         else {
             Student student = new Student();
@@ -97,11 +108,12 @@ public class AddNewStudent extends AppCompatActivity {
             student.setStdMobileNo(edtMobileNo.getText().toString());
             student.setGaurdianName(edtGaurdianName.getText().toString());
             student.setGaurdianPhoneNo(edtgaurdianPhoennO.getText().toString());
-            student.setStdPassword("123456");
+            student.setStdPassword(edtpass.getText().toString().trim());
+          //  student.setStdPassword("123456");
             student.setStdClassId(uid);
 
             if (edtEmailAddress.getText().toString().trim().equals("")  || edtRollNo.getText().toString().equals("")
-                    || edtfname.getText().toString().equals("")){
+                    ||edtpass.getText().toString().equals("") || edtfname.getText().toString().equals("")){
                 Toast.makeText(this, "Please Make Sure You Have Entered All Credentials.", Toast.LENGTH_SHORT).show();
             }
             else {
@@ -125,7 +137,10 @@ public class AddNewStudent extends AppCompatActivity {
                                 }
                                 else {
                                     Log.d("StdError" , "er"+task.getException());
-                                    Toast.makeText(AddNewStudent.this, "Exception"+task.getException(), Toast.LENGTH_SHORT).show();
+                                    if (edtpass.getText().toString().trim().toCharArray().length < 6){
+                                        Toast.makeText(AddNewStudent.this, "Password Must be Six (6) Digits..", Toast.LENGTH_SHORT).show();
+                                    }
+                                    Toast.makeText(AddNewStudent.this, "Exception"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
 
                             }

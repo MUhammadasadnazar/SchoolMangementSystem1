@@ -48,8 +48,8 @@ public class StudentProfileActivity extends AppCompatActivity {
 		reference = FirebaseDatabase.getInstance().getReference()
 				.child("Classes").child(stdclassid).child("Students").child(stduid);
 
-		Toast.makeText(this, "uid"+stduid, Toast.LENGTH_SHORT).show();
-		Toast.makeText(this, "classid"+stdclassid, Toast.LENGTH_SHORT).show();
+	//	Toast.makeText(this, "uid"+stduid, Toast.LENGTH_SHORT).show();
+	//	Toast.makeText(this, "classid"+stdclassid, Toast.LENGTH_SHORT).show();
 
 		getStdProfileDetails();
 

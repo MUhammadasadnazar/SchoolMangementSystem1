@@ -22,6 +22,15 @@ public class AdpaterStaffLIst extends RecyclerView.Adapter<AdpaterStaffLIst.View
 	Context context;
 	ArrayList<Staff> list;
 	onClickRVItem onClickRVItem;
+	Boolean isClass;
+
+	public AdpaterStaffLIst(Context context, ArrayList<Staff> list, com.example.schoolmangementsystem1.Interface.onClickRVItem onClickRVItem,
+			Boolean isClass) {
+		this.context = context;
+		this.list = list;
+		this.onClickRVItem = onClickRVItem;
+		this.isClass = isClass;
+	}
 
 	public AdpaterStaffLIst(Context context, ArrayList<Staff> list, com.example.schoolmangementsystem1.Interface.onClickRVItem onClickRVItem) {
 		this.context = context;
@@ -44,6 +53,10 @@ public class AdpaterStaffLIst extends RecyclerView.Adapter<AdpaterStaffLIst.View
 
 	@Override
 	public void onBindViewHolder(@NonNull AdpaterStaffLIst.ViewHolder holder, int position) {
+		if (isClass){
+			holder.tvcontactno.setVisibility(View.GONE);
+			holder.tvaddress.setVisibility(View.GONE);
+		}
 		holder.tvname.setText(list.get(position).getStaffName()+"");
 		holder.tvedu.setText(list.get(position).getEducation()+"");
 		holder.tvaddress.setText(list.get(position).getAddress()+"");

@@ -31,6 +31,7 @@ import com.example.schoolmangementsystem1.Attendance.MonthListActivity;
 import com.example.schoolmangementsystem1.Complaint.ComplaintListActivity;
 import com.example.schoolmangementsystem1.Complaint.StudentListActivity2;
 import com.example.schoolmangementsystem1.LeaveRequest.StdRequestList;
+import com.example.schoolmangementsystem1.List.ClassesListActivity;
 import com.example.schoolmangementsystem1.List.StaffList;
 import com.example.schoolmangementsystem1.List.StudentsListActivity;
 import com.example.schoolmangementsystem1.List.SubjectListActivity;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvleavecount;
 
     DatabaseReference databaseReference , databaseReferenceStaff ;
+    LinearLayout linearlayoutAllstuff;
 
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         btnCreateNewStaff = findViewById(R.id._btnCreateNewStaff);
         btnAddNewCLass = findViewById(R.id._btnAddNewClass);
         linearlayoutstdentsubject = ( LinearLayout) findViewById(R.id._linearlayoutstdentsubject);
+        linearlayoutAllstuff = ( LinearLayout) findViewById(R.id._linearlayoutAllstuff);
+
 
         //uid as class id and uid2 as USer ID
 
@@ -207,6 +211,7 @@ public class MainActivity extends AppCompatActivity {
                 Boolean isAdmin = snapshot.child("admin").getValue(Boolean.class);
                 if (isAdmin){
                     linearlayoutstdentsubject.setVisibility(View.VISIBLE);
+                    linearlayoutAllstuff.setVisibility(View.GONE);
                    // btnAddNewCLass.setVisibility(View.VISIBLE);
                    // btnCreateNewStaff.setVisibility(View.VISIBLE);
 
@@ -234,7 +239,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void AddNewClass(View view) {
-        Intent intent = new Intent(MainActivity.this , AddNewClass.class);
+      //  Intent intent = new Intent(MainActivity.this , AddNewClass.class);
+        Intent intent = new Intent(MainActivity.this , ClassesListActivity.class);
         startActivity(intent);
     }
 

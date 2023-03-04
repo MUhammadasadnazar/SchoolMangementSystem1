@@ -40,11 +40,20 @@ public class CreateNewStaff extends AppCompatActivity {
         setContentView(R.layout.activity_create_new_staff);
         btnnewstaff = findViewById(R.id._btnnewstaff);
 
+        edtname = findViewById(R.id._edtstaffname);
+        edtaddress = findViewById(R.id._edtAddress);
+        edteducation = findViewById(R.id._edteducation);
+        edtcontactno = findViewById(R.id._edtcontactNo);
+        edtemailaddress = findViewById(R.id._edtemailaddress);
+        edtpass = findViewById(R.id._edtpass);
+
         stffid = getIntent().getStringExtra("stfid");
 
         if (!stffid.equals("")){
 
             btnnewstaff.setText("Update");
+            edtemailaddress.setEnabled(false);
+            edtpass.setEnabled(false);
             LoadStafData();
            // Toast.makeText(this, "Edit", Toast.LENGTH_SHORT).show();
 
@@ -52,12 +61,6 @@ public class CreateNewStaff extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("Staff");
 
-        edtname = findViewById(R.id._edtstaffname);
-        edtaddress = findViewById(R.id._edtAddress);
-        edteducation = findViewById(R.id._edteducation);
-        edtcontactno = findViewById(R.id._edtcontactNo);
-        edtemailaddress = findViewById(R.id._edtemailaddress);
-        edtpass = findViewById(R.id._edtpass);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -73,11 +76,13 @@ public class CreateNewStaff extends AppCompatActivity {
       else {
           if (!validtaion()){
               Toast.makeText(this, "Make Sure You have Entered All Credentials...", Toast.LENGTH_SHORT).show();
+
+
           }else
           {
 
               firebaseAuth.createUserWithEmailAndPassword
-                              (edtemailaddress.getText().toString(),"123456")
+                              (edtemailaddress.getText().toString(),edtpass.getText().toString().trim())
                       .addOnCompleteListener(new OnCompleteListener<AuthResult>()
                       {
                           @Override
@@ -95,20 +100,29 @@ public class CreateNewStaff extends AppCompatActivity {
                                   staff.setContactNo(edtcontactno.getText().toString()+"");
                                   staff.setEmailAddress(edtemailaddress.getText().toString()+"");
                                   staff.setAdmin(false);
-                                  staff.setPassword("123456");
+                                  staff.setPassword(edtpass.getText().toString().trim());
 
 
                                   databaseReference.child(firebaseAuth.getCurrentUser().getUid())
                                           .setValue(staff);
 
-                                  Toast.makeText(CreateNewStaff.this, "Operation Successfull...", Toast.LENGTH_SHORT).show();
+                                  firebaseAuth.signOut();
+
+                                 // Toast.makeText(CreateNewStaff.this, "Staff Created Successfully...", Toast.LENGTH_SHORT).show();
                                  // Intent intent= new Intent(CreateNewStaff.this, MainActivity.class);
                                   finish();
                                  // startActivity(intent);
                               }
                               else
                               if (!task.isSuccessful()){
-                                  Toast.makeText(CreateNewStaff.this, ""+task.getException(), Toast.LENGTH_SHORT).show();
+
+
+                                  if(edtpass.getText().toString().trim().toCharArray().length < 6){
+                                      Toast.makeText(CreateNewStaff.this, "Password Must be Six (6) Digits...", Toast.LENGTH_LONG).show();
+                                     // Toast.makeText(CreateNewStaff.this, "Email Badly Formatted Please Check Email Formate And Try Again...", Toast.LENGTH_LONG).show();
+
+                                  }
+                                  Toast.makeText(CreateNewStaff.this, ""+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 
                               }
                           }
@@ -126,6 +140,9 @@ public class CreateNewStaff extends AppCompatActivity {
         reference.child("address").setValue(edtaddress.getText().toString()+"");
         reference.child("education").setValue(edteducation.getText().toString()+"");
         reference.child("contactNo").setValue(edtcontactno.getText().toString()+"");
+
+        Toast.makeText(this, "Changes Saved SuccessFully....", Toast.LENGTH_SHORT).show();
+
     }
     public  void LoadStafData(){
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Staff").child(stffid);
@@ -162,6 +179,7 @@ public class CreateNewStaff extends AppCompatActivity {
                 edtaddress.getText().toString().trim().equals("")||
         edtcontactno.getText().toString().trim().equals("")||
         edteducation.getText().toString().trim().equals("")||
+                edtpass.getText().toString().trim().equals("")||
                 edtemailaddress.getText().toString().trim().equals("")){
 
 
